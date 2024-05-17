@@ -67,7 +67,7 @@ function UserManagement() {
 
   return (
     <div className="Container px-4 py-2 bg-primary-100">
-      <Header headerLabel={"Upravljanje korisnicima"}></Header>
+      <Header headerLabel={"User Management"}></Header>
       <AddUserForm onSubmit={onSubmit}></AddUserForm>
       <UserResultsTable
         vrednostiTabele={vrednostiTabele}
