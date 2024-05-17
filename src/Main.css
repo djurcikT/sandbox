@@ -2,10 +2,16 @@
   margin-left: 15%;
   margin-top: 15%;
 }
-.Container{
+.Container {
   width: 98%;
   margin: auto;
 }
-.Meni{
-  width: fit-content;
+.Meni {
+  width: auto;
+  background-color: crimson;
+}
+.HomeText {
+  width: 70%;
+  margin: auto;
+  margin-top: 15px;
 }
