@@ -2,3 +2,10 @@
   margin-left: 15%;
   margin-top: 15%;
 }
+.Container{
+  width: 98%;
+  margin: auto;
+}
+.Meni{
+  width: fit-content;
+}
