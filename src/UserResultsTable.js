@@ -9,8 +9,8 @@ import "../src/Main.css";
 import { Button } from "primereact/button";
 
 export function UserResultsTable({ vrednostiTabele, onDelete }) {
+  const value = 1;
   console.log("hello");
-
   const hobiBody = (rowData) => {
     return rowData && rowData.hobi ? rowData.hobi.join(", ") : null;
   };
@@ -33,7 +33,8 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
             field="date"
             header="DatumRodjenja"
             body={(rowData) =>
-              rowData.date && new Date(rowData.date).toLocaleDateString()
+              (rowData.date && new Date(rowData.date).toLocaleDateString()) ??
+              "-||-"
             }
           ></Column>
           <Column field="hobi" header="Hobi" body={hobiBody}></Column>
