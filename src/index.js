@@ -6,14 +6,24 @@ import reportWebVitals from "./reportWebVitals";
 import "primeflex/primeflex.css";
 import "primereact/resources/primereact.css";
 import "primereact/resources/themes/lara-light-teal/theme.css";
-import { RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main />,
+  },
+  { path: "/Home", element: "Home" },
+  { path: "/UserManagement", element: "UserManagement" },
+  { path: "/ProductManagement", element: "ProductManagement" },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Main>
-      {/* <RouterProvider router={router} /> */}
+      <RouterProvider router={router} />
     </Main>
   </React.StrictMode>
 );
