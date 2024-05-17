@@ -12,17 +12,20 @@ function Main() {
   const [vrednostiTabele, setVrednostiTabele] = useState([]);
 
   const punoletan = (date) => {
-    const danas = new Date();
-    const rodjen = new Date(date);
-    const godine = danas.getFullYear() - rodjen.getFullYear();
-    return godine >= 18;
+    if (date) {
+      const danas = new Date();
+      const rodjen = new Date(date);
+      const godine = danas.getFullYear() - rodjen.getFullYear();
+      return godine >= 18;
+    }
+    return false;
   };
 
   const obojCrveno = {
-    backgroundColor: "bg-red-200",
+    backgroundColor: "bg-red-100",
   };
   const obojZeleno = {
-    backgroundColor: "bg-green-200",
+    backgroundColor: "bg-green-100",
   };
   const onDelete = (rowData) => {
     if (window.confirm("Jeste li sigurni da zelite da obrisete korisnika?")) {
@@ -49,7 +52,11 @@ function Main() {
           odabranoVoce: noviKorisnik?.odabranoVoce?.name,
           // odabranoVoce: noviKorisnik.odabranoVoce.name,
           komentarValue: noviKorisnik.komentarValue,
-          rowClass: punoletan(noviKorisnik.date) ? obojZeleno : obojCrveno,
+          rowClass: !noviKorisnik.date
+            ? { backgroundColor: "white" }
+            : punoletan(noviKorisnik.date)
+            ? obojZeleno
+            : obojCrveno,
         },
       ];
       setVrednostiTabele(noveVrednostiTabele);
