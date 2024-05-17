@@ -5,19 +5,20 @@ import React, { useState } from "react";
 import "primeflex/primeflex.css";
 import "../src/Main.css";
 import { TabMenu } from "primereact/tabmenu";
+import { Link } from "react-router-dom";
 
 export function Header(props) {
   const menuItems = [
     {
-      label: "Home",
+      label: <Link to="/home">Home</Link>,
       icon: "pi pi-home",
     },
     {
-      label: "User Management",
+      label: <Link to="/user-management">User Management</Link>,
       icon: "pi pi-user",
     },
     {
-      label: "Product Management",
+      label: <Link to="/product-management">Product Management</Link>,
       icon: "pi pi-question",
     },
   ];
