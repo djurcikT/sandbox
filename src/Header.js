@@ -14,11 +14,11 @@ export function Header(props) {
       icon: "pi pi-home",
     },
     {
-      label: <Link to="/user-management">User Management</Link>,
+      label: <Link to="/userManagement">User Management</Link>,
       icon: "pi pi-user",
     },
     {
-      label: <Link to="/product-management">Product Management</Link>,
+      label: <Link to="/productManagement">Product Management</Link>,
       icon: "pi pi-question",
     },
   ];
