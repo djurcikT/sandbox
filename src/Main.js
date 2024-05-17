@@ -6,16 +6,21 @@ import "primeflex/primeflex.css";
 import "../src/Main.css";
 import { Header } from "./Header";
 import { Home } from "./Home";
-
+import UserManagement from "./UserManagement";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 function Main() {
-  
   return (
-    <div className="Container px-4 py-2">
-      <Header headerLabel={"Main"}></Header>
-      <Home></Home>
+    <Router>
+      <div className="Container px-4 py-2">
+        <Header headerLabel={"Main"}></Header>
 
-    </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <p>Odaberite jedan od linkova u meniju da biste pogledali stranice</p>
+      </div>
+    </Router>
   );
 }
 
