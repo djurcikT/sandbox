@@ -9,6 +9,8 @@ import "../src/Main.css";
 import { Button } from "primereact/button";
 
 export function UserResultsTable({ vrednostiTabele, onDelete }) {
+  console.log("hello");
+
   const hobiBody = (rowData) => {
     return rowData && rowData.hobi ? rowData.hobi.join(", ") : null;
   };
