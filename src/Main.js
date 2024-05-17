@@ -18,7 +18,7 @@ function Main() {
         <br></br>
         <br></br>
         <br></br>
-        <p>Odaberite jedan od linkova u meniju da biste pogledali stranice</p>
+        <p>Odaberite jedan od linkova u meniju da biste pogledali druge stranice</p>
       </div>
     </Router>
   );
