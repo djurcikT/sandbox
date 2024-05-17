@@ -6,11 +6,14 @@ import "primeflex/primeflex.css";
 import "../src/Main.css";
 import { Header } from "./Header";
 import { Card } from "primereact/card";
+import { Route, Routes } from "react-router-dom";
 
 export function Home(props) {
+
   return (
     <div className="HomeContainer">
       <Header headerLabel={"Home"}></Header>
+
       <div className="HomeText">
         <Card title="O Sajtu">
           <p className="m-0">
