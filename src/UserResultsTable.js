@@ -9,10 +9,24 @@ import "../src/Main.css";
 import { Button } from "primereact/button";
 
 export function UserResultsTable({ vrednostiTabele, onDelete }) {
-  const value = 1;
-  console.log("hello");
   const hobiBody = (rowData) => {
     return rowData && rowData.hobi ? rowData.hobi.join(", ") : null;
+  };
+
+  const [editedData, setEditedData] = useState([]);
+  const [editRow, setEditRow] = useState(null);
+
+  const handleEdit = (row) => {
+    console.log(row);
+    setEditRow(row);
+  };
+  const handleSave = (row) => {
+    console.log(editedData);
+    setEditedData([...editedData, row]);
+    setEditRow(null);
+  };
+  const handleCancel = (row) => {
+    setEditRow(null);
   };
 
   return (
@@ -25,6 +39,10 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
             console.log(rowData.rowClass.backgroundColor);
             return rowData.rowClass.backgroundColor;
           }}
+          rowEdit={true}
+          onEdit={(row) => handleEdit(row)}
+          onCancelEdit={(row) => handleCancel(row)}
+          onSave={(row) => handleSave(row)}
         >
           <Column field="imeValue" header="Ime"></Column>
           <Column field="prezimeValue" header="Prezime"></Column>
@@ -48,6 +66,7 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
                   label=""
                   icon="pi pi-pencil"
                   className="p-button-text"
+                  onClick={() => handleEdit(rowData)}
                 />
                 <Button
                   label=""
