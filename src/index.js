@@ -6,12 +6,15 @@ import reportWebVitals from "./reportWebVitals";
 import "primeflex/primeflex.css";
 import "primereact/resources/primereact.css";
 import "primereact/resources/themes/lara-light-teal/theme.css";
+import { RouterProvider } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <Main />
+    <Main>
+      {/* <RouterProvider router={router} /> */}
+    </Main>
   </React.StrictMode>
 );
 
