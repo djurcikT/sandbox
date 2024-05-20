@@ -30,16 +30,6 @@ function UserManagement() {
   const onDelete = (name, surname) => {
     console.log(name + " " + surname + " will be deleted.");
 
-    //const index = vrednostiTabele.indexOf(rowData);
-
-    // const objekatZaBrisanje = iz niza pronaci element/objekat koji ima ime = name i prezime = surname;
-
-    // if( objekatZaBrisanje){
-    //   iz vrednostiTabele obrisati objekatZaBrisanje
-
-    //   setVrednostiTabele(vrednostiTabele bez objekatZaBrisanje)
-    // }
-
     const vrednostiTabeleFiltrirano = vrednostiTabele.filter((item) => {
       return !(item.imeValue === name && item.prezimeValue === surname);
     });
@@ -48,28 +38,38 @@ function UserManagement() {
   };
 
   const onSubmit = (noviKorisnik) => {
-    if (noviKorisnik != null) {
-      const noveVrednostiTabele = [
-        ...vrednostiTabele,
-        {
-          imeValue: noviKorisnik.imeValue,
-          prezimeValue: noviKorisnik.prezimeValue,
-          pol: noviKorisnik.pol,
-          date: noviKorisnik?.date?.toString(),
-          hobi: noviKorisnik.hobi,
-          // odabranoVoce: noviKorisnik && noviKorisnik.odabranoVoce && noviKorisnik.odabranoVoce.name,
-          odabranoVoce: noviKorisnik?.odabranoVoce?.name,
-          // odabranoVoce: noviKorisnik.odabranoVoce.name,
-          komentarValue: noviKorisnik.komentarValue,
-          rowClass: !noviKorisnik.date
-            ? { backgroundColor: "white" }
-            : punoletan(noviKorisnik.date)
-            ? obojZeleno
-            : obojCrveno,
-        },
-      ];
-      setVrednostiTabele(noveVrednostiTabele);
-      console.log(noveVrednostiTabele.rowClass);
+    if (
+      vrednostiTabele.some(
+        (item) =>
+          item.imeValue === noviKorisnik.imeValue &&
+          item.prezimeValue === noviKorisnik.prezimeValue
+      )
+    ) {
+      alert("Ovaj korisnik vec postoji");
+    } else {
+      if (noviKorisnik != null) {
+        const noveVrednostiTabele = [
+          ...vrednostiTabele,
+          {
+            imeValue: noviKorisnik.imeValue,
+            prezimeValue: noviKorisnik.prezimeValue,
+            pol: noviKorisnik.pol,
+            date: noviKorisnik?.date?.toString(),
+            hobi: noviKorisnik.hobi,
+            // odabranoVoce: noviKorisnik && noviKorisnik.odabranoVoce && noviKorisnik.odabranoVoce.name,
+            odabranoVoce: noviKorisnik?.odabranoVoce?.name,
+            // odabranoVoce: noviKorisnik.odabranoVoce.name,
+            komentarValue: noviKorisnik.komentarValue,
+            rowClass: !noviKorisnik.date
+              ? { backgroundColor: "white" }
+              : punoletan(noviKorisnik.date)
+              ? obojZeleno
+              : obojCrveno,
+          },
+        ];
+        setVrednostiTabele(noveVrednostiTabele);
+        console.log(noveVrednostiTabele.rowClass);
+      }
     }
   };
 
