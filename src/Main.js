@@ -34,8 +34,8 @@ function Main() {
           headerSize={1}
         />
         <div className="Meni">
-          <div className="card ">
-            <TabMenu model={menuItems} />
+          <div className="card">
+            <TabMenu model={menuItems}  />
           </div>
         </div>
         <Routes>
