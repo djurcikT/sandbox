@@ -35,7 +35,7 @@ function Main() {
         />
         <div className="Meni">
           <div className="card">
-            <TabMenu model={menuItems}  />
+            <TabMenu model={menuItems} />
           </div>
         </div>
         <Routes>

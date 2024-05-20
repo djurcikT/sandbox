@@ -1,13 +1,15 @@
 import "/node_modules/primeflex/primeflex.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "primeicons/primeicons.css";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import "primeflex/primeflex.css";
 import "../src/Main.css";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
+import { confirmPopup } from "primereact/confirmpopup";
+import { Toast } from "primereact/toast";
 
 export function UserResultsTable({ vrednostiTabele, onDelete }) {
   const hobiBody = (rowData) => {
@@ -16,11 +18,42 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
 
   const [visible, setVisible] = useState(false);
   const [selectedName, setSelectedName] = useState("");
+  const [selectedSurname, setSelectedSurname] = useState("");
   const [komentarValue, setKomentarValue] = useState("");
   const openDialog = (name, komentar) => {
     setSelectedName(name);
     setKomentarValue(komentar);
     setVisible(true);
+  };
+  const [confirmationVisible, setConfirmationVisible] = useState(false);
+
+  const toast = useRef(null);
+
+  const acceptDelete = () => {
+    onDelete(selectedName, selectedSurname);
+    setConfirmationVisible(false);
+    toast.current.show({
+      severity: "info",
+      summary: "Confirmed",
+      detail: "Person deleted successfully",
+      life: 3000,
+    });
+  };
+
+  const rejectDelete = () => {
+    setConfirmationVisible(false);
+    toast.current.show({
+      severity: "warn",
+      summary: "Rejected",
+      detail: "Deleting cancelled",
+      life: 3000,
+    });
+  };
+
+  const confirmDelete = (rowData) => {
+    setSelectedName(rowData.imeValue);
+    setSelectedSurname(rowData.prezimeValue);
+    setConfirmationVisible(true);
   };
 
   return (
@@ -76,16 +109,37 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
             body={(rowData) => (
               <div>
                 <Button
-                  label=""
+                  onClick={() => confirmDelete(rowData)}
                   icon="pi pi-trash"
-                  className="p-button-text"
-                  onClick={() => onDelete(rowData)}
-                />
+                  label=""
+                  className="p-button-danger"
+                ></Button>
               </div>
             )}
           ></Column>
         </DataTable>
       </div>
+      <Dialog
+        visible={confirmationVisible}
+        style={{ width: "30vw" }}
+        onHide={() => setConfirmationVisible(false)}
+        breakpoints={{ "960px": "75vw" }}
+        header="Confirmation"
+        footer={
+          <div>
+            <Button label="No" icon="pi pi-times" onClick={rejectDelete} />
+            <Button
+              label="Yes"
+              icon="pi pi-check"
+              className="p-button-danger"
+              onClick={() => acceptDelete()}
+            />
+          </div>
+        }
+      >
+        <div>Do you want to delete {selectedName}?</div>
+      </Dialog>
+      <Toast ref={toast} />
     </div>
   );
 }

@@ -27,16 +27,24 @@ function UserManagement() {
   const obojZeleno = {
     backgroundColor: "bg-green-100",
   };
+  const onDelete = (name, surname) => {
+    console.log(name + " " + surname + " will be deleted.");
 
-  const onDelete = (rowData) => {
-    if (window.confirm("Jeste li sigurni da zelite da obrisete korisnika?")) {
-      console.log(rowData);
-      const index = vrednostiTabele.indexOf(rowData);
-      if (index != -1) {
-        vrednostiTabele.splice(index, 1);
-        setVrednostiTabele([...vrednostiTabele]);
-      }
-    }
+    //const index = vrednostiTabele.indexOf(rowData);
+
+    // const objekatZaBrisanje = iz niza pronaci element/objekat koji ima ime = name i prezime = surname;
+
+    // if( objekatZaBrisanje){
+    //   iz vrednostiTabele obrisati objekatZaBrisanje
+
+    //   setVrednostiTabele(vrednostiTabele bez objekatZaBrisanje)
+    // }
+
+    const vrednostiTabeleFiltrirano = vrednostiTabele.filter((item) => {
+      return !(item.imeValue === name && item.prezimeValue === surname);
+    });
+
+    setVrednostiTabele(vrednostiTabeleFiltrirano);
   };
 
   const onSubmit = (noviKorisnik) => {
