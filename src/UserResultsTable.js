@@ -6,28 +6,13 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import "primeflex/primeflex.css";
 import "../src/Main.css";
-import { Button } from "primereact/button";
+import { Button } from "primereact/button"; 
 
 export function UserResultsTable({ vrednostiTabele, onDelete }) {
   const hobiBody = (rowData) => {
     return rowData && rowData.hobi ? rowData.hobi.join(", ") : null;
   };
 
-  const [editedData, setEditedData] = useState([]);
-  const [editRow, setEditRow] = useState(null);
-
-  const handleEdit = (row) => {
-    console.log(row);
-    setEditRow(row);
-  };
-  const handleSave = (row) => {
-    console.log(editedData);
-    setEditedData([...editedData, row]);
-    setEditRow(null);
-  };
-  const handleCancel = (row) => {
-    setEditRow(null);
-  };
 
   return (
     <div className="p-col-12">
@@ -40,9 +25,6 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
             return rowData.rowClass.backgroundColor;
           }}
           rowEdit={true}
-          onEdit={(row) => handleEdit(row)}
-          onCancelEdit={(row) => handleCancel(row)}
-          onSave={(row) => handleSave(row)}
         >
           <Column field="imeValue" header="Ime"></Column>
           <Column field="prezimeValue" header="Prezime"></Column>
@@ -59,15 +41,9 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
           <Column field="odabranoVoce" header="Omiljeno voce"></Column>
           <Column field="komentarValue" header="Komentar"></Column>
           <Column
-            header="Edit/Delete"
+            header="Delete"
             body={(rowData) => (
               <div>
-                <Button
-                  label=""
-                  icon="pi pi-pencil"
-                  className="p-button-text"
-                  onClick={() => handleEdit(rowData)}
-                />
                 <Button
                   label=""
                   icon="pi pi-trash"

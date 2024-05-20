@@ -8,7 +8,6 @@ import { Header } from "./Header.js";
 import { AddUserForm } from "./AddUserForm.js";
 import { UserResultsTable } from "./UserResultsTable.js";
 
-
 function UserManagement() {
   const [vrednostiTabele, setVrednostiTabele] = useState([]);
 
@@ -27,16 +26,6 @@ function UserManagement() {
   };
   const obojZeleno = {
     backgroundColor: "bg-green-100",
-  };
-  const onDelete = (rowData) => {
-    if (window.confirm("Jeste li sigurni da zelite da obrisete korisnika?")) {
-      console.log(rowData);
-      const index = vrednostiTabele.indexOf(rowData);
-      if (index != -1) {
-        vrednostiTabele.splice(index, 1);
-        setVrednostiTabele([...vrednostiTabele]);
-      }
-    }
   };
 
   const onSubmit = (noviKorisnik) => {
