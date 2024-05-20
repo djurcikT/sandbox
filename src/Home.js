@@ -13,7 +13,7 @@ export function Home(props) {
     <div className="HomeContainer">
       <Header headerLabel={"Home"} headerSize={1}></Header>
 
-      <div className="HomeText">
+      <div className="HomeText shadow-6">
         <Card title="O Sajtu">
           <p className="m-0">
             Ovo je sajt koji sam napravila na strucnoj praksi. Sadrzi glavnu
