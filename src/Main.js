@@ -27,19 +27,24 @@ function Main() {
     },
   ];
   return (
-    <BrowserRouter>
-      <Header headerLabel={"Sajt o korisnicima i proizvodima"} headerSize={1} />
-      <div className="Meni">
-        <div className="card ">
-          <TabMenu model={menuItems} />
+    <div className="container">
+      <BrowserRouter>
+        <Header
+          headerLabel={"Sajt o korisnicima i proizvodima"}
+          headerSize={1}
+        />
+        <div className="Meni">
+          <div className="card ">
+            <TabMenu model={menuItems} />
+          </div>
         </div>
-      </div>
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/userManagement" element={<UserManagement />} />
-        {/* <Route path="/productManagement" element={<ProductManagement />} /> */}
-      </Routes>
-    </BrowserRouter>
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/userManagement" element={<UserManagement />} />
+          {/* <Route path="/productManagement" element={<ProductManagement />} /> */}
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
