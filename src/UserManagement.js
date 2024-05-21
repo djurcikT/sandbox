@@ -60,6 +60,7 @@ function UserManagement() {
             odabranoVoce: noviKorisnik?.odabranoVoce?.name,
             // odabranoVoce: noviKorisnik.odabranoVoce.name,
             bioValue: noviKorisnik.bioValue,
+            slikaValue: noviKorisnik.slikaValue,
             rowClass: !noviKorisnik.date
               ? { backgroundColor: "white" }
               : punoletan(noviKorisnik.date)

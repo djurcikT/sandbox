@@ -8,7 +8,6 @@ import "primeflex/primeflex.css";
 import "../src/Main.css";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
-import { confirmPopup } from "primereact/confirmpopup";
 import { Toast } from "primereact/toast";
 
 export function UserResultsTable({ vrednostiTabele, onDelete }) {
@@ -19,10 +18,21 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
   const [visible, setVisible] = useState(false);
   const [selectedName, setSelectedName] = useState("");
   const [selectedSurname, setSelectedSurname] = useState("");
-  const [bioValue, setBioValue] = useState("");
-  const openDialog = (name, bio) => {
+  const [selectedPol, setSelectedPol] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedHobi, setSelectedHobi] = useState("");
+  const [selectedFruit, setSelectedFruit] = useState("");
+  const [selectedPhoto, setSelectedPhoto] = useState("");
+  const [selectedBio, setSelectedBio] = useState("");
+  const openDialog = (name, surname, pol, date, hobby, fruit, photo, bio) => {
     setSelectedName(name);
-    setBioValue(bio);
+    setSelectedSurname(surname);
+    setSelectedPol(pol);
+    setSelectedDate(date);
+    setSelectedHobi(hobby);
+    setSelectedFruit(fruit);
+    setSelectedPhoto(photo);
+    setSelectedBio(bio);
     setVisible(true);
   };
   const [confirmationVisible, setConfirmationVisible] = useState(false);
@@ -70,35 +80,59 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
         >
           <Column field="imeValue" header="Ime"></Column>
           <Column field="prezimeValue" header="Prezime"></Column>
-          <Column field="pol" header="Pol"></Column>
           <Column
-            field="date"
-            header="DatumRodjenja"
-            body={(rowData) =>
-              (rowData.date && new Date(rowData.date).toLocaleDateString()) ??
-              "-||-"
-            }
-          ></Column>
-          <Column field="hobi" header="Hobi" body={hobiBody}></Column>
-          <Column field="odabranoVoce" header="Omiljeno voce"></Column>
-          <Column
-            field="bioValue"
             header="Details"
             body={(rowData) => (
               <div>
                 <Button
                   label="Pogledaj"
                   icon="pi pi-eye"
-                  onClick={() => openDialog(rowData.imeValue, rowData.bioValue)}
+                  onClick={() =>
+                    openDialog(
+                      rowData.imeValue,
+                      rowData.prezimeValue,
+                      rowData.pol,
+                      rowData.date,
+                      rowData.hobi,
+                      rowData.odabranoVoce,
+                      rowData.slikaValue,
+                      rowData.bioValue
+                    )
+                  }
                 />
                 <Dialog
-                  header={selectedName}
+                  header="User info"
                   visible={visible}
                   style={{ width: "50vw" }}
                   onHide={() => setVisible(false)}
                 >
-                  <p></p>
-                  <p className="m-0">{bioValue}</p>
+                  <p className="m-0">
+                    <b>Ime:</b> {selectedName}
+                  </p>
+                  <p className="m-0">
+                    <b>Prezime:</b> {selectedSurname}
+                  </p>
+                  <p className="m-0">
+                    <b>Pol:</b> {selectedPol}
+                  </p>
+                  <p className="m-0">
+                    <b>Datum Rodjenja:</b>{" "}
+                    {(selectedDate &&
+                      new Date(selectedDate).toLocaleDateString("en-GB")) ??
+                      "-||-"}
+                  </p>
+                  <p className="m-0">
+                    <b>Hobi:</b> {selectedHobi}
+                  </p>
+                  <p className="m-0">
+                    <b>Omiljeno voce:</b> {selectedFruit}
+                  </p>
+                  <p className="m-0">
+                    <b>Izabrana slika:</b> {selectedPhoto}
+                  </p>
+                  <p className="m-0">
+                    <b>Biografija:</b> {selectedBio}
+                  </p>
                 </Dialog>
               </div>
             )}
@@ -136,7 +170,9 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
           </div>
         }
       >
-        <div>Do you want to delete {selectedName}?</div>
+        <div>
+          Do you want to delete {selectedName} {selectedSurname}?
+        </div>
       </Dialog>
       <Toast ref={toast} />
     </div>
