@@ -14,6 +14,8 @@ import "primeflex/primeflex.css";
 import "../src/Main.css";
 import { Field, Form } from "react-final-form";
 
+import { FileUpload } from "primereact/fileupload";
+
 export function AddUserForm(props) {
   const [imeValue, setImeValue] = useState(""); //za ime
   const [prezimeValue, setPrezimeValue] = useState(""); //za prezime
@@ -37,7 +39,26 @@ export function AddUserForm(props) {
     { name: "Kruška" },
     { name: "Drugo" },
   ]; //za voce
-  const [komentarValue, setKomentarValue] = useState(""); //za komentar
+
+  const [slikaValue, setSlikaValue] = useState(null);
+  const toast = useRef(null);
+
+  const customBase64Uploader = async (event) => {
+    // convert file to base64 encoded
+    const file = event.files[0];
+    const reader = new FileReader();
+    let blob = await fetch(file.objectURL).then((r) => r.blob()); //blob:url
+
+    reader.readAsDataURL(blob);
+
+    reader.onloadend = function () {
+      const base64data = reader.result;
+
+      setSlikaValue(base64data)
+    };
+  }; //za sliku
+
+  const [bioValue, setBioValue] = useState(""); //za biografiju
 
   const handleSubmit = (e) => {
     const noveVrednostiTabele = {
@@ -48,6 +69,7 @@ export function AddUserForm(props) {
       hobi,
       odabranoVoce,
       bioValue,
+      slikaValue,
     };
     props.onSubmit(noveVrednostiTabele);
     setImeValue("");
@@ -57,7 +79,7 @@ export function AddUserForm(props) {
     setHobi([]);
     setOdabranoVoce(null);
     setBioValue("");
-    setFile(null);
+    setSlikaValue(null);
   };
 
   return (
@@ -197,8 +219,22 @@ export function AddUserForm(props) {
                   className="bg-primary-50 w-12"
                 />
               </div>
-
+              <div className="Slika field col">
+                <h4>Slika:</h4>
+                <div className="card">
+                  <FileUpload
+                    mode="basic"
+                    name="slika"
+                    url="./upload"
+                    accept="image/*"
+                    customUpload
+                    uploadHandler={customBase64Uploader}
+                    value={slikaValue}
+                  />
+                </div>
+              </div>
               <div className="SacuvajPodatke field col">
+                <h4>Sacuvajte novog korisnika:</h4>
                 <Button
                   label="Sacuvaj"
                   icon="pi pi-check"
