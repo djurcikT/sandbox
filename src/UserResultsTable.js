@@ -9,12 +9,9 @@ import "../src/Main.css";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { Toast } from "primereact/toast";
+import { Image } from "primereact/image";
 
 export function UserResultsTable({ vrednostiTabele, onDelete }) {
-  const hobiBody = (rowData) => {
-    return rowData && rowData.hobi ? rowData.hobi.join(", ") : null;
-  };
-
   const [visible, setVisible] = useState(false);
   const [selectedName, setSelectedName] = useState("");
   const [selectedSurname, setSelectedSurname] = useState("");
@@ -87,7 +84,7 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
                 <Button
                   label="Pogledaj"
                   icon="pi pi-eye"
-                  onClick={() =>
+                  onClick={() => {
                     openDialog(
                       rowData.imeValue,
                       rowData.prezimeValue,
@@ -97,8 +94,8 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
                       rowData.odabranoVoce,
                       rowData.slikaValue,
                       rowData.bioValue
-                    )
-                  }
+                    );
+                  }}
                 />
                 <Dialog
                   header="User info"
@@ -106,32 +103,57 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
                   style={{ width: "50vw" }}
                   onHide={() => setVisible(false)}
                 >
-                  <p className="m-0">
-                    <b>Ime:</b> {selectedName}
-                  </p>
-                  <p className="m-0">
-                    <b>Prezime:</b> {selectedSurname}
-                  </p>
-                  <p className="m-0">
-                    <b>Pol:</b> {selectedPol}
-                  </p>
-                  <p className="m-0">
-                    <b>Datum Rodjenja:</b>{" "}
-                    {(selectedDate &&
-                      new Date(selectedDate).toLocaleDateString("en-GB")) ??
-                      "-||-"}
-                  </p>
-                  <p className="m-0">
-                    <b>Hobi:</b> {selectedHobi}
-                  </p>
-                  <p className="m-0">
-                    <b>Omiljeno voce:</b> {selectedFruit}
-                  </p>
-                  <p className="m-0">
-                    <b>Izabrana slika:</b> {selectedPhoto}
-                  </p>
-                  <p className="m-0">
-                    <b>Biografija:</b> {selectedBio}
+                  <div class="grid">
+                    <div class="col-6">
+                      <div class="p-3 border-round-sm">
+                        <p className="m-0">
+                          <b>Ime:</b> {selectedName}
+                        </p>
+                        <p className="m-0">
+                          <b>Prezime:</b> {selectedSurname}
+                        </p>
+                        <p className="m-0">
+                          <b>Pol:</b> {selectedPol}
+                        </p>
+                        <p className="m-0">
+                          <b>Datum Rodjenja:</b>{" "}
+                          {(selectedDate &&
+                            new Date(selectedDate).toLocaleDateString(
+                              "en-GB"
+                            )) ??
+                            "-||-"}
+                        </p>
+                        <p className="m-0">
+                          <b>Hobi:</b>{" "}
+                          {selectedHobi && Array.isArray(selectedHobi) && (
+                            <span>{selectedHobi.join(", ")}</span>
+                          )}
+                        </p>
+                        <p className="m-0">
+                          <b>Omiljeno voce:</b> {selectedFruit}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class=" border-round-sm">
+                        <p className="m-0">
+                          {selectedPhoto && (
+                            <div className="card flex justify-content-center">
+                              <Image
+                                src={selectedPhoto}
+                                alt="...Placeholder za sliku..."
+                                width="300"
+                                preview
+                              />
+                            </div>
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="m-0 p-3">
+                    <b>Biografija:</b> <p>{selectedBio}</p>
                   </p>
                 </Dialog>
               </div>
