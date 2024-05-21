@@ -27,7 +27,7 @@ function Main() {
     },
   ];
   return (
-    <div className="container">
+    <div className="container bg-primary-200">
       <BrowserRouter>
         <Header
           headerLabel={"Sajt o korisnicima i proizvodima"}

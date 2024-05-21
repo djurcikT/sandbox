@@ -74,7 +74,7 @@ function UserManagement() {
   };
 
   return (
-    <div className="Container px-4 py-2 bg-primary-100">
+    <div className="Container px-4 py-2">
       <Header headerLabel={"User Management"}></Header>
       <AddUserForm onSubmit={onSubmit}></AddUserForm>
       <UserResultsTable
