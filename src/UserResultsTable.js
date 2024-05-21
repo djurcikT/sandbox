@@ -19,10 +19,10 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
   const [visible, setVisible] = useState(false);
   const [selectedName, setSelectedName] = useState("");
   const [selectedSurname, setSelectedSurname] = useState("");
-  const [komentarValue, setKomentarValue] = useState("");
-  const openDialog = (name, komentar) => {
+  const [bioValue, setBioValue] = useState("");
+  const openDialog = (name, bio) => {
     setSelectedName(name);
-    setKomentarValue(komentar);
+    setBioValue(bio);
     setVisible(true);
   };
   const [confirmationVisible, setConfirmationVisible] = useState(false);
@@ -82,16 +82,14 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
           <Column field="hobi" header="Hobi" body={hobiBody}></Column>
           <Column field="odabranoVoce" header="Omiljeno voce"></Column>
           <Column
-            field="komentarValue"
-            header="Komentar"
+            field="bioValue"
+            header="Details"
             body={(rowData) => (
               <div>
                 <Button
                   label="Pogledaj"
                   icon="pi pi-eye"
-                  onClick={() =>
-                    openDialog(rowData.imeValue, rowData.komentarValue)
-                  }
+                  onClick={() => openDialog(rowData.imeValue, rowData.bioValue)}
                 />
                 <Dialog
                   header={selectedName}
@@ -99,7 +97,8 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
                   style={{ width: "50vw" }}
                   onHide={() => setVisible(false)}
                 >
-                  <p className="m-0">{komentarValue}</p>
+                  <p></p>
+                  <p className="m-0">{bioValue}</p>
                 </Dialog>
               </div>
             )}

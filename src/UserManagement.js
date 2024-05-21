@@ -59,7 +59,7 @@ function UserManagement() {
             // odabranoVoce: noviKorisnik && noviKorisnik.odabranoVoce && noviKorisnik.odabranoVoce.name,
             odabranoVoce: noviKorisnik?.odabranoVoce?.name,
             // odabranoVoce: noviKorisnik.odabranoVoce.name,
-            komentarValue: noviKorisnik.komentarValue,
+            bioValue: noviKorisnik.bioValue,
             rowClass: !noviKorisnik.date
               ? { backgroundColor: "white" }
               : punoletan(noviKorisnik.date)

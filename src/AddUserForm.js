@@ -47,7 +47,7 @@ export function AddUserForm(props) {
       date,
       hobi,
       odabranoVoce,
-      komentarValue,
+      bioValue,
     };
     props.onSubmit(noveVrednostiTabele);
     setImeValue("");
@@ -56,7 +56,8 @@ export function AddUserForm(props) {
     setDate(null);
     setHobi([]);
     setOdabranoVoce(null);
-    setKomentarValue("");
+    setBioValue("");
+    setFile(null);
   };
 
   return (
@@ -186,13 +187,13 @@ export function AddUserForm(props) {
             </div>
 
             <div className="formgrid grid">
-              <div className="Komentar field col md:col-8">
-                <h4>Komentar:</h4>
+              <div className="Bio field col">
+                <h4>Biografija:</h4>
                 <InputTextarea
-                  value={komentarValue}
-                  onChange={(event) => setKomentarValue(event.target.value)}
-                  rows={5}
-                  cols={30}
+                  value={bioValue}
+                  onChange={(event) => setBioValue(event.target.value)}
+                  rows={7}
+                  cols={500}
                   className="bg-primary-50 w-12"
                 />
               </div>
