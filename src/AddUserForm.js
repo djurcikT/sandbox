@@ -13,10 +13,16 @@ import { Button } from "primereact/button";
 import "primeflex/primeflex.css";
 import "../src/Main.css";
 import { Field, Form } from "react-final-form";
-
 import { FileUpload } from "primereact/fileupload";
+import { useTranslation, Trans } from "react-i18next";
+
+const lngs = {
+  en: { nativeName: "English" },
+  sr: { nativeName: "Serbian" },
+};
 
 export function AddUserForm(props) {
+  const { t, i18n } = useTranslation();
   const [imeValue, setImeValue] = useState(""); //za ime
   const [prezimeValue, setPrezimeValue] = useState(""); //za prezime
   const [pol, setPol] = useState(""); //za pol
@@ -30,15 +36,15 @@ export function AddUserForm(props) {
     setHobi(_hobi);
   }; //za hobije
 
-  const [odabranoVoce, setOdabranoVoce] = useState(null);
-  const opcijeVoca = [
-    { name: "Banana" },
-    { name: "Mango" },
-    { name: "Jabuka" },
-    { name: "Kajsija" },
-    { name: "Kruška" },
-    { name: "Drugo" },
-  ]; //za voce
+  const [odabranoOdeljenje, setOdabranoOdeljenje] = useState(null);
+  const opcijeOdeljenja = [
+    { name: "{t(dep_man1)}" },
+    { name: "{t(dep_man2)}" },
+    { name: "{t(dep_man3)}" },
+    { name: "{t(dep_man4)}" },
+    { name: "{t(dep_man5)}" },
+    { name: "{t(dep_man6)}" },
+  ]; //za odeljenja
 
   const [slikaValue, setSlikaValue] = useState(null);
   const toast = useRef(null);
@@ -54,7 +60,7 @@ export function AddUserForm(props) {
     reader.onloadend = function () {
       const base64data = reader.result;
 
-      setSlikaValue(base64data)
+      setSlikaValue(base64data);
     };
   }; //za sliku
 
@@ -67,7 +73,7 @@ export function AddUserForm(props) {
       pol,
       date,
       hobi,
-      odabranoVoce,
+      odabranoOdeljenje,
       bioValue,
       slikaValue,
     };
@@ -77,7 +83,7 @@ export function AddUserForm(props) {
     setPol("");
     setDate(null);
     setHobi([]);
-    setOdabranoVoce(null);
+    setOdabranoOdeljenje(null);
     setBioValue("");
     setSlikaValue(null);
   };
@@ -90,7 +96,7 @@ export function AddUserForm(props) {
           <form onSubmit={handleSubmit}>
             <div className="formgrid grid">
               <div className="Ime card field col">
-                <h4>Ime:</h4>
+                <h4>{t("userform_name")}</h4>
                 <FloatLabel>
                   <InputText
                     id="ime"
@@ -102,7 +108,7 @@ export function AddUserForm(props) {
               </div>
 
               <div className="Prezime card field col">
-                <h4>Prezime:</h4>
+                <h4>{t("userform_surname")}</h4>
                 <FloatLabel>
                   <InputText
                     id="Prezime"
@@ -114,7 +120,7 @@ export function AddUserForm(props) {
               </div>
 
               <div className="Pol field col">
-                <h4>Pol:</h4>
+                <h4>{t("userform_gender")}</h4>
                 <div className="flex flex-wrap gap-3">
                   <div className="flex align-items-center">
                     <RadioButton
@@ -125,7 +131,7 @@ export function AddUserForm(props) {
                       checked={pol === "Zensko"}
                     />
                     <label htmlFor="zensko" className="Pol">
-                      Zensko
+                      {t("gender_f")}
                     </label>
                   </div>
                   <div className="flex align-items-center">
@@ -137,7 +143,7 @@ export function AddUserForm(props) {
                       checked={pol === "Musko"}
                     />
                     <label htmlFor="musko" className="Pol">
-                      Musko
+                      {t("gender_m")}
                     </label>
                   </div>
                 </div>
@@ -146,7 +152,7 @@ export function AddUserForm(props) {
 
             <div className="formgrid grid">
               <div className="DatumRodjenja field col">
-                <h4>Datum rodjenja:</h4>
+                <h4>{t("userform_date")}</h4>
                 <Calendar
                   value={date}
                   onChange={(event) => event.value && setDate(event.value)}
@@ -154,7 +160,7 @@ export function AddUserForm(props) {
               </div>
 
               <div className="IzaberiHobi field col flex align-content-center flex-column">
-                <h4>Hobi:</h4>
+                <h4>{t("userform_hobby")}</h4>
                 <div className="flex align-items-center">
                   <Checkbox
                     inputId="hobi1"
@@ -164,7 +170,7 @@ export function AddUserForm(props) {
                     checked={hobi.includes("Sport")}
                   />
                   <label htmlFor="hobi1" className="ml-2">
-                    Sport
+                    {t("hobi1")}
                   </label>
                 </div>
                 <div className="flex align-items-center">
@@ -176,7 +182,7 @@ export function AddUserForm(props) {
                     checked={hobi.includes("Muzika")}
                   />
                   <label htmlFor="hobi2" className="ml-2">
-                    Muzika
+                    {t("hobi2")}
                   </label>
                 </div>
                 <div className="flex align-items-center">
@@ -188,19 +194,19 @@ export function AddUserForm(props) {
                     checked={hobi.includes("Knjige")}
                   />
                   <label htmlFor="hobi3" className="ml-2">
-                    Knjige
+                    {t("hobi3")}
                   </label>
                 </div>
               </div>
 
-              <div className="OmiljenoVoce field col">
-                <h4>Odaberi omiljeno voce:</h4>
+              <div className="Odeljenje field col">
+                <h4>{t("userform_department")}</h4>
                 <Dropdown
-                  value={odabranoVoce}
-                  onChange={(event) => setOdabranoVoce(event.value)}
-                  options={opcijeVoca}
+                  value={odabranoOdeljenje}
+                  onChange={(event) => setOdabranoOdeljenje(event.value)}
+                  options={opcijeOdeljenja}
                   optionLabel="name"
-                  placeholder="Odaberi voce"
+                  placeholder={t("userform_choose_dropdown")}
                   checkmark={true}
                   highlightOnSelect={false}
                   className="bg-primary-50"
@@ -210,7 +216,7 @@ export function AddUserForm(props) {
 
             <div className="formgrid grid">
               <div className="Bio field col">
-                <h4>Biografija:</h4>
+                <h4>{t("userform_bio")}</h4>
                 <InputTextarea
                   value={bioValue}
                   onChange={(event) => setBioValue(event.target.value)}
@@ -220,7 +226,7 @@ export function AddUserForm(props) {
                 />
               </div>
               <div className="Slika field col">
-                <h4>Slika:</h4>
+                <h4>{t("userform_photo")}</h4>
                 <div className="card">
                   <FileUpload
                     mode="basic"
@@ -234,9 +240,9 @@ export function AddUserForm(props) {
                 </div>
               </div>
               <div className="SacuvajPodatke field col">
-                <h4>Sacuvajte novog korisnika:</h4>
+                <h4>{t("userform_save")}</h4>
                 <Button
-                  label="Sacuvaj"
+                  label={t("userform_save_button")}
                   icon="pi pi-check"
                   type="submit"
                   className="p-button"
