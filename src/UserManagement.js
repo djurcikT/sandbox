@@ -7,8 +7,15 @@ import "../src/Main.css";
 import { Header } from "./Header.js";
 import { AddUserForm } from "./AddUserForm.js";
 import { UserResultsTable } from "./UserResultsTable.js";
+import { useTranslation, Trans } from "react-i18next";
+
+const lngs = {
+  en: { nativeName: "English" },
+  sr: { nativeName: "Serbian" },
+};
 
 function UserManagement() {
+  const { t, i18n } = useTranslation();
   const [vrednostiTabele, setVrednostiTabele] = useState([]);
 
   const punoletan = (date) => {
@@ -45,7 +52,7 @@ function UserManagement() {
           item.prezimeValue === noviKorisnik.prezimeValue
       )
     ) {
-      alert("Ovaj korisnik vec postoji");
+      alert("User already exists");
     } else {
       if (noviKorisnik != null) {
         const noveVrednostiTabele = [
@@ -56,9 +63,9 @@ function UserManagement() {
             pol: noviKorisnik.pol,
             date: noviKorisnik?.date?.toString(),
             hobi: noviKorisnik.hobi,
-            // odabranoVoce: noviKorisnik && noviKorisnik.odabranoVoce && noviKorisnik.odabranoVoce.name,
-            odabranoVoce: noviKorisnik?.odabranoVoce?.name,
-            // odabranoVoce: noviKorisnik.odabranoVoce.name,
+            // odabranoOdeljenje: noviKorisnik && noviKorisnik.odabranoOdeljenje && noviKorisnik.odabranoOdeljenje.name,
+            odabranoOdeljenje: noviKorisnik?.odabranoOdeljenje?.name,
+            // odabranoOdeljenje: noviKorisnik.odabranoOdeljenje.name,
             bioValue: noviKorisnik.bioValue,
             slikaValue: noviKorisnik.slikaValue,
             rowClass: !noviKorisnik.date
@@ -76,7 +83,7 @@ function UserManagement() {
 
   return (
     <div className="Container px-4 py-2">
-      <Header headerLabel={"User Management"}></Header>
+      <Header headerLabel={t("title_user_man")}></Header>
       <AddUserForm onSubmit={onSubmit}></AddUserForm>
       <UserResultsTable
         vrednostiTabele={vrednostiTabele}

@@ -10,29 +10,47 @@ import UserManagement from "./UserManagement";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { TabMenu } from "primereact/tabmenu";
 import { Link } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
+import { Button } from "primereact/button";
+import DepartmentManagement from "./DepartmentManagement";
+
+const lngs = {
+  en: { nativeName: "English" },
+  sr: { nativeName: "Serbian" },
+};
 
 function Main() {
+  const { t, i18n } = useTranslation();
   const menuItems = [
     {
-      label: <Link to="/home">Home</Link>,
+      label: <Link to="/home">{t("home")}</Link>,
       icon: "pi pi-home",
     },
     {
-      label: <Link to="/userManagement">User Management</Link>,
-      icon: "pi pi-user",
+      label: <Link to="/t">{t("dep_man")}</Link>,
+      icon: "pi pi-building",
     },
     {
-      label: <Link to="/productManagement">Product Management</Link>,
-      icon: "pi pi-question",
+      label: <Link to="/userManagement">{t("user_man")}</Link>,
+      icon: "pi pi-user",
     },
   ];
   return (
     <div className="container bg-primary-200">
       <BrowserRouter>
-        <Header
-          headerLabel={"Sajt o korisnicima i proizvodima"}
-          headerSize={1}
-        />
+        <Header headerLabel={t("title")} headerSize={1} />
+        <div className="card flex justify-content-end pr-2 pb-2 -mt-7">
+          {Object.keys(lngs).map((lng) => (
+            <Button
+              type="submit"
+              key={lng}
+              onClick={() => i18n.changeLanguage(lng)}
+              disabled={i18n.resolvedLanguage === lng}
+            >
+              {lngs[lng].nativeName}
+            </Button>
+          ))}
+        </div>
         <div className="Meni">
           <div className="card">
             <TabMenu model={menuItems} />
@@ -40,8 +58,11 @@ function Main() {
         </div>
         <Routes>
           <Route path="/home" element={<Home />} />
+          <Route
+            path="/departmentManagement"
+            element={<DepartmentManagement />}
+          />
           <Route path="/userManagement" element={<UserManagement />} />
-          {/* <Route path="/productManagement" element={<ProductManagement />} /> */}
         </Routes>
       </BrowserRouter>
     </div>

@@ -7,26 +7,23 @@ import "../src/Main.css";
 import { Header } from "./Header";
 import { Card } from "primereact/card";
 import { Route, Routes } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
+
+const lngs = {
+  en: { nativeName: "English" },
+  sr: { nativeName: "Serbian" },
+};
 
 export function Home(props) {
+  const { t, i18n } = useTranslation();
   return (
     <div className="HomeContainer">
-      <Header headerLabel={"Home"} headerSize={1}></Header>
+      <Header headerLabel={t("title_h")} headerSize={1}></Header>
 
       <div className="HomeText shadow-6">
-        <Card title="O Sajtu">
+        <Card title={t("title_h_card")}>
           <p className="m-0">
-            Ovo je sajt koji sam napravila na strucnoj praksi. Sadrzi glavnu
-            Main stranicu sa navigacijom iz koje se moze ici u razlicite delove
-            sajta: Home, User Management i Product Management. <br></br>
-            Ovo je Home stranica koja objasnjava svaku stranicu i cemu ona
-            sluzi. <br></br>
-            User Management stranica se sastoji od forme koju korisnik
-            ispunjava, a zatim se ti njegovi podaci smestaju u tabelu, iz koje
-            kasnije moze da ih izmeni ili obrise <br></br>
-            Product Management stranica se sastoji od forme u koju se upisuju
-            podaci o proizvodu, a zatim se ti njegovi podaci smestaju u tabelu,
-            iz koje kasnije moze da ih izmeni ili obrise
+            <Trans i18nKey="introduction"></Trans>
           </p>
           <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid

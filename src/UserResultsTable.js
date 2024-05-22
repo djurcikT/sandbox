@@ -10,24 +10,40 @@ import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { Toast } from "primereact/toast";
 import { Image } from "primereact/image";
+import { useTranslation, Trans } from "react-i18next";
+
+const lngs = {
+  en: { nativeName: "English" },
+  sr: { nativeName: "Serbian" },
+};
 
 export function UserResultsTable({ vrednostiTabele, onDelete }) {
+  const { t, i18n } = useTranslation();
   const [visible, setVisible] = useState(false);
   const [selectedName, setSelectedName] = useState("");
   const [selectedSurname, setSelectedSurname] = useState("");
   const [selectedPol, setSelectedPol] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedHobi, setSelectedHobi] = useState("");
-  const [selectedFruit, setSelectedFruit] = useState("");
+  const [selectedDepartment, setSelectedDepartment] = useState("");
   const [selectedPhoto, setSelectedPhoto] = useState("");
   const [selectedBio, setSelectedBio] = useState("");
-  const openDialog = (name, surname, pol, date, hobby, fruit, photo, bio) => {
+  const openDialog = (
+    name,
+    surname,
+    pol,
+    date,
+    hobby,
+    department,
+    photo,
+    bio
+  ) => {
     setSelectedName(name);
     setSelectedSurname(surname);
     setSelectedPol(pol);
     setSelectedDate(date);
     setSelectedHobi(hobby);
-    setSelectedFruit(fruit);
+    setSelectedDepartment(department);
     setSelectedPhoto(photo);
     setSelectedBio(bio);
     setVisible(true);
@@ -75,14 +91,14 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
           }}
           rowEdit={true}
         >
-          <Column field="imeValue" header="Ime"></Column>
-          <Column field="prezimeValue" header="Prezime"></Column>
+          <Column field="imeValue" header={t("user_header1")}></Column>
+          <Column field="prezimeValue" header={t("user_header2")}></Column>
           <Column
-            header="Details"
+            header={t("user_header3")}
             body={(rowData) => (
               <div>
                 <Button
-                  label="Pogledaj"
+                  label={t("user_open_details")}
                   icon="pi pi-eye"
                   onClick={() => {
                     openDialog(
@@ -91,14 +107,14 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
                       rowData.pol,
                       rowData.date,
                       rowData.hobi,
-                      rowData.odabranoVoce,
+                      rowData.odabranoOdeljenje,
                       rowData.slikaValue,
                       rowData.bioValue
                     );
                   }}
                 />
                 <Dialog
-                  header="User info"
+                  header={t("user_details")}
                   visible={visible}
                   style={{ width: "50vw" }}
                   onHide={() => setVisible(false)}
@@ -107,16 +123,16 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
                     <div class="col-6">
                       <div class="p-3 border-round-sm">
                         <p className="m-0">
-                          <b>Ime:</b> {selectedName}
+                          <b>{t("userform_name")}</b> {selectedName}
                         </p>
                         <p className="m-0">
-                          <b>Prezime:</b> {selectedSurname}
+                          <b>{t("userform_surname")}</b> {selectedSurname}
                         </p>
                         <p className="m-0">
-                          <b>Pol:</b> {selectedPol}
+                          <b>{t("userform_gender")}</b> {selectedPol}
                         </p>
                         <p className="m-0">
-                          <b>Datum Rodjenja:</b>{" "}
+                          <b>{t("userform_date")}</b>{" "}
                           {(selectedDate &&
                             new Date(selectedDate).toLocaleDateString(
                               "en-GB"
@@ -124,13 +140,13 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
                             "-||-"}
                         </p>
                         <p className="m-0">
-                          <b>Hobi:</b>{" "}
+                          <b>{t("userform_hobby")}</b>{" "}
                           {selectedHobi && Array.isArray(selectedHobi) && (
                             <span>{selectedHobi.join(", ")}</span>
                           )}
                         </p>
                         <p className="m-0">
-                          <b>Omiljeno voce:</b> {selectedFruit}
+                          <b>{t("userform_department")}</b> {selectedDepartment}
                         </p>
                       </div>
                     </div>
@@ -153,14 +169,14 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
                   </div>
 
                   <p className="m-0 p-3">
-                    <b>Biografija:</b> <p>{selectedBio}</p>
+                    <b>{t("userform_bio")}</b> <p>{selectedBio}</p>
                   </p>
                 </Dialog>
               </div>
             )}
           ></Column>
           <Column
-            header="Delete"
+            header={t("user_header4")}
             body={(rowData) => (
               <div>
                 <Button
