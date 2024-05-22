@@ -27,7 +27,7 @@ function Main() {
       icon: "pi pi-home",
     },
     {
-      label: <Link to="/t">{t("dep_man")}</Link>,
+      label: <Link to="/departmentManagement">{t("dep_man")}</Link>,
       icon: "pi pi-building",
     },
     {

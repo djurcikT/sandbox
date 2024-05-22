@@ -4,7 +4,6 @@ import "primeicons/primeicons.css";
 import React, { useState } from "react";
 import "primeflex/primeflex.css";
 import "../src/Main.css";
-import { Header } from "./Header.js";
 import { AddUserForm } from "./AddUserForm.js";
 import { UserResultsTable } from "./UserResultsTable.js";
 import { useTranslation, Trans } from "react-i18next";
@@ -83,7 +82,7 @@ function UserManagement() {
 
   return (
     <div className="Container px-4 py-2">
-      <Header headerLabel={t("title_user_man")}></Header>
+      <h2 className="flex justify-content-center">{t("title_user_man")}</h2>
       <AddUserForm onSubmit={onSubmit}></AddUserForm>
       <UserResultsTable
         vrednostiTabele={vrednostiTabele}

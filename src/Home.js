@@ -4,9 +4,7 @@ import "primeicons/primeicons.css";
 import React, { useState } from "react";
 import "primeflex/primeflex.css";
 import "../src/Main.css";
-import { Header } from "./Header";
 import { Card } from "primereact/card";
-import { Route, Routes } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 
 const lngs = {
@@ -18,7 +16,7 @@ export function Home(props) {
   const { t, i18n } = useTranslation();
   return (
     <div className="HomeContainer">
-      <Header headerLabel={t("title_h")} headerSize={1}></Header>
+      <h2 className="flex justify-content-center">{t("title_h")}</h2>
 
       <div className="HomeText shadow-6">
         <Card title={t("title_h_card")}>
