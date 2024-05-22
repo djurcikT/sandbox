@@ -60,6 +60,11 @@ i18next
           userform_maxNum: "Max number of emplyees:",
           userform_description: "Description of department:",
           userdepart_save: "Save Departmant:",
+
+          depart_header1: "Type:",
+          depart_header2: "City:",
+          depart_header3: "Details:",
+          depart_header4: "Delete:",
         },
       },
       sr: {
@@ -113,6 +118,11 @@ i18next
           userform_maxNum: "Max broj zaposlenih:",
           userform_description: "Opis odeljenja:",
           userdepart_save: "Sacuvaj odeljenje:",
+
+          depart_header1: "Tip:",
+          depart_header2: "Grad:",
+          depart_header3: "Detalji:",
+          depart_header4: "Obrisi:",
         },
       },
     },

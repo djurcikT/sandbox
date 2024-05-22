@@ -15,7 +15,7 @@ import { Button } from "primereact/button";
 
 const lngs = {
   en: { nativeName: "English" },
-  sr: { nativeName: "Serbian" },
+  sr: { nativeName: "Serbian" }, 
 };
 
 function DepartmentManagementForm(props) {

@@ -89,7 +89,6 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
             console.log(rowData.rowClass.backgroundColor);
             return rowData.rowClass.backgroundColor;
           }}
-          rowEdit={true}
         >
           <Column field="imeValue" header={t("user_header1")}></Column>
           <Column field="prezimeValue" header={t("user_header2")}></Column>
