@@ -226,7 +226,7 @@ export function AddUserForm(props) {
                   className="bg-primary-50 w-12"
                 />
               </div>
-              
+
               <div className="Slika field col">
                 <h4>{t("userform_photo")}</h4>
                 <div className="card">
