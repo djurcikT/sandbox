@@ -23,7 +23,7 @@ export function DepartmentsTable({ departmentValues, onDelete }) {
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedAddress, setSelectedAddress] = useState("");
-  const [selectedMaxNum, setSelectedMaxNum] = useState("");
+  const [selectedMaxNum, setSelectedMaxNum] = useState();
   const [selectedDescription, setSelectedDescription] = useState("");
   const [visible, setVisible] = useState(false);
 
@@ -33,6 +33,7 @@ export function DepartmentsTable({ departmentValues, onDelete }) {
     setSelectedAddress(address);
     setSelectedMaxNum(maxNum);
     setSelectedDescription(description);
+    setVisible(true);
   };
 
   const confirmDelete = (rowData) => {
@@ -92,19 +93,19 @@ export function DepartmentsTable({ departmentValues, onDelete }) {
                 >
                   <div class="p-3 border-round-sm">
                     <p className="m-0">
-                      <b>{t("userform_name")}</b> {selectedDepartment}
+                      <b>{t("userform_department")}</b> {selectedDepartment}
                     </p>
                     <p className="m-0">
-                      <b>{t("userform_surname")}</b> {selectedCity}
+                      <b>{t("userform_city")}</b> {selectedCity}
                     </p>
                     <p className="m-0">
-                      <b>{t("userform_gender")}</b> {selectedAddress}
+                      <b>{t("userform_address")}</b> {selectedAddress}
                     </p>
                     <p className="m-0">
-                      <b>{t("userform_gender")}</b> {selectedMaxNum}
+                      <b>{t("userform_maxNum")}</b> {selectedMaxNum}
                     </p>
                     <p className="m-0">
-                      <b>{t("userform_gender")}</b> {selectedDescription}
+                      <b>{t("userform_description")}</b> {selectedDescription}
                     </p>
                   </div>
                 </Dialog>

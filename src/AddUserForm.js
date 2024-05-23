@@ -36,7 +36,7 @@ export function AddUserForm(props) {
     setHobi(_hobi);
   }; //za hobije
 
-  const [odabranoOdeljenje, setOdabranoOdeljenje] = useState(null);
+  const [odabranoOdeljenje, setOdabranoOdeljenje] = useState();
   const opcijeOdeljenja = [
     { value: "dep_type1", name: t("dep_type1") },
     { value: "dep_type2", name: t("dep_type2") },

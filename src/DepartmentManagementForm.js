@@ -50,7 +50,7 @@ function DepartmentManagementForm(props) {
     setDepartmentType(null);
     setCityValue("");
     setAddressValue("");
-    setMaxNumValue("");
+    setMaxNumValue();
     setDescriptionValue("");
   };
 
