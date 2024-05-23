@@ -46,7 +46,7 @@ export function DepartmentsTable({ departmentValues, onDelete }) {
     toast.current.show({
       severity: "info",
       summary: "Confirmed",
-      detail: "Person deleted successfully",
+      detail: "Deleted successfully",
       life: 3000,
     });
   };

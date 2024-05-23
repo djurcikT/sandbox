@@ -38,13 +38,13 @@ export function AddUserForm(props) {
 
   const [odabranoOdeljenje, setOdabranoOdeljenje] = useState(null);
   const opcijeOdeljenja = [
-    { name: t("dep_type1") },
-    { name: t("dep_type2") },
-    { name: t("dep_type3") },
-    { name: t("dep_type4") },
-    { name: t("dep_type5") },
-    { name: t("dep_type6") },
-    { name: t("dep_type7") },
+    { value: "dep_type1", name: t("dep_type1") },
+    { value: "dep_type2", name: t("dep_type2") },
+    { value: "dep_type3", name: t("dep_type3") },
+    { value: "dep_type4", name: t("dep_type4") },
+    { value: "dep_type5", name: t("dep_type5") },
+    { value: "dep_type6", name: t("dep_type6") },
+    { value: "dep_type7", name: t("dep_type7") },
   ]; //za odeljenja
 
   const [slikaValue, setSlikaValue] = useState(null);

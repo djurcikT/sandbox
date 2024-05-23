@@ -15,33 +15,38 @@ import { Button } from "primereact/button";
 
 const lngs = {
   en: { nativeName: "English" },
-  sr: { nativeName: "Serbian" }, 
+  sr: { nativeName: "Serbian" },
 };
 
 function DepartmentManagementForm(props) {
   const { t, i18n } = useTranslation();
 
-  const [departmentType, setDepartmentType] = useState([]);
-  const DepartmentTypeOptions = [
-    { name: t("dep_type1") },
-    { name: t("dep_type2") },
-    { name: t("dep_type3") },
-    { name: t("dep_type4") },
-    { name: t("dep_type5") },
-    { name: t("dep_type6") },
-    { name: t("dep_type7") },
+  const [departmentType, setDepartmentType] = useState(null);
+  const departmentTypeOptions = [
+    { value: "dep_type1", name: t("dep_type1") },
+    { value: "dep_type2", name: t("dep_type2") },
+    { value: "dep_type3", name: t("dep_type3") },
+    { value: "dep_type4", name: t("dep_type4") },
+    { value: "dep_type5", name: t("dep_type5") },
+    { value: "dep_type6", name: t("dep_type6") },
+    { value: "dep_type7", name: t("dep_type7") },
   ];
+  //name = vrednost izabrane opcije u formi; label  = kako ce biti vidljivo na UI
 
-  const [cityValue, setCityValue] = useState([]);
-  const [addressValue, setAddressValue] = useState([]);
-  const [maxNumValue, setMaxNumValue] = useState([]);
-  const [descriptionValue, setDescriptionValue] = useState([]);
+  const [cityValue, setCityValue] = useState("");
+  const [addressValue, setAddressValue] = useState("");
+  const [maxNumValue, setMaxNumValue] = useState();
+  const [descriptionValue, setDescriptionValue] = useState("");
 
   const handleSubmit = (e) => {
-    const noveVrednostiTabele = {
+    const departmentValues = {
       departmentType,
+      cityValue,
+      addressValue,
+      maxNumValue,
+      descriptionValue,
     };
-    props.onSubmit(noveVrednostiTabele);
+    props.onSubmit(departmentValues);
     setDepartmentType(null);
     setCityValue("");
     setAddressValue("");
@@ -62,7 +67,7 @@ function DepartmentManagementForm(props) {
                   <Dropdown
                     value={departmentType}
                     onChange={(event) => setDepartmentType(event.value)}
-                    options={DepartmentTypeOptions}
+                    options={departmentTypeOptions}
                     optionLabel="name"
                     placeholder={t("userform_choose_dropdown")}
                     checkmark={true}

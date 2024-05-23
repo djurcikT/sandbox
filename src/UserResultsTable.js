@@ -28,6 +28,7 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [selectedPhoto, setSelectedPhoto] = useState("");
   const [selectedBio, setSelectedBio] = useState("");
+
   const openDialog = (
     name,
     surname,
@@ -58,7 +59,7 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
     toast.current.show({
       severity: "info",
       summary: "Confirmed",
-      detail: "Person deleted successfully",
+      detail: "Deleted successfully",
       life: 3000,
     });
   };
