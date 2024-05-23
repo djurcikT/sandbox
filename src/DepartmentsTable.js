@@ -66,7 +66,13 @@ export function DepartmentsTable({ departmentValues, onDelete }) {
     <div className="p-col-12">
       <div className="p-card p-p-4">
         <DataTable value={departmentValues} tableStyle={{ minWidth: "50rem" }}>
-          <Column field="departmentType" header={t("depart_header1")}></Column>
+          <Column
+            field="departmentType"
+            header={t("depart_header1")}
+            body={(values) => {
+              return t(values.departmentType);
+            }}
+          ></Column>
           <Column field="cityValue" header={t("depart_header2")}></Column>
           <Column
             header={t("user_header3")}
@@ -93,7 +99,7 @@ export function DepartmentsTable({ departmentValues, onDelete }) {
                 >
                   <div class="p-3 border-round-sm">
                     <p className="m-0">
-                      <b>{t("userform_department")}</b> {selectedDepartment}
+                      <b>{t("userform_department")}</b> {t(selectedDepartment)}
                     </p>
                     <p className="m-0">
                       <b>{t("userform_city")}</b> {selectedCity}
@@ -146,7 +152,8 @@ export function DepartmentsTable({ departmentValues, onDelete }) {
         }
       >
         <div>
-          Do you want to delete {selectedDepartment} located in {selectedCity}?
+          Do you want to delete {t(selectedDepartment)} located in{" "}
+          {selectedCity}?
         </div>
       </Dialog>
       <Toast ref={toast} />

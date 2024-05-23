@@ -146,7 +146,8 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
                           )}
                         </p>
                         <p className="m-0">
-                          <b>{t("userform_department")}</b> {selectedDepartment}
+                          <b>{t("userform_department")}</b>{" "}
+                          {t(selectedDepartment)}
                         </p>
                       </div>
                     </div>
