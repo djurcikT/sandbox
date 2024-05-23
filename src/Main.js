@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import { Button } from "primereact/button";
 import DepartmentManagement from "./DepartmentManagement";
+import { Footer } from "./Footer";
 
 const lngs = {
   en: { nativeName: "English" },
@@ -46,6 +47,7 @@ function Main() {
               key={lng}
               onClick={() => i18n.changeLanguage(lng)}
               disabled={i18n.resolvedLanguage === lng}
+              className="m-1 p-2"
             >
               {lngs[lng].nativeName}
             </Button>
@@ -64,6 +66,7 @@ function Main() {
           />
           <Route path="/userManagement" element={<UserManagement />} />
         </Routes>
+        <Footer></Footer>
       </BrowserRouter>
     </div>
   );

@@ -65,6 +65,8 @@ i18next
           depart_header2: "City:",
           depart_header3: "Details:",
           depart_header4: "Delete:",
+
+          copyright: "Tamara 2024. All Rights reserved",
         },
       },
       sr: {
@@ -123,6 +125,8 @@ i18next
           depart_header2: "Grad:",
           depart_header3: "Detalji:",
           depart_header4: "Obrisi:",
+
+          copyright: "Tamara 2024. Sva prava zadržana",
         },
       },
     },
