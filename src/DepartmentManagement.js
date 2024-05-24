@@ -41,7 +41,7 @@ function DepartmentManagement() {
     });
 
     setDepartmentValues(departmentValuesFiltered);
-  };
+  }; 
 
   return (
     <div className="Container px-4 py-2">

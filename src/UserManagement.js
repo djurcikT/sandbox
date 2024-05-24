@@ -13,7 +13,7 @@ const lngs = {
   sr: { nativeName: "Serbian" },
 };
 
-function UserManagement() {
+function UserManagement() { 
   const { t, i18n } = useTranslation();
   const [vrednostiTabele, setVrednostiTabele] = useState([]);
 

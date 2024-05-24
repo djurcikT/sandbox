@@ -32,6 +32,8 @@ i18next
           userform_photo: "Photo:",
           userform_save: "Save user:",
           userform_save_button: "Save:",
+          userform_position: "Position:",
+          userform_choose_position: "Choose a position",
 
           hobi1: "Sport",
           hobi2: "Music",
@@ -93,6 +95,8 @@ i18next
           userform_photo: "Slika:",
           userform_save: "Sacuvajte korisnika:",
           userform_save_button: "Sacuvaj:",
+          userform_postion: "Pozicija:",
+          userform_choose_position: "Izaberite poziciju",
 
           hobi1: "Sport",
           hobi2: "Muzika",

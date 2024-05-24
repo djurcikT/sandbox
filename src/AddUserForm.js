@@ -1,7 +1,7 @@
 import "/node_modules/primeflex/primeflex.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "primeicons/primeicons.css";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { FloatLabel } from "primereact/floatlabel";
 import { RadioButton } from "primereact/radiobutton";
@@ -15,6 +15,8 @@ import "../src/Main.css";
 import { Field, Form } from "react-final-form";
 import { FileUpload } from "primereact/fileupload";
 import { useTranslation, Trans } from "react-i18next";
+import axios from "axios";
+import { Message } from "primereact/message";
 
 const lngs = {
   en: { nativeName: "English" },
@@ -22,12 +24,70 @@ const lngs = {
 };
 
 export function AddUserForm(props) {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation(); //i18next
   const [imeValue, setImeValue] = useState(""); //za ime
   const [prezimeValue, setPrezimeValue] = useState(""); //za prezime
   const [pol, setPol] = useState(""); //za pol
   const [date, setDate] = useState(null); //za datum rodjenja
-  const [hobi, setHobi] = useState([]);
+  const [hobi, setHobi] = useState([]); //za hobije
+
+  const [positions, setPositions] = useState([]);
+  // let positionsSelectOptions = [];
+
+  // if (positions && positions.length > 0) {
+  //   positionsSelectOptions = positions.map((position) => ({
+  //     name: t(position),
+  //     value: position,
+  //   }));
+  // }
+
+  // useEffect(() => {
+  //   const fetchPositions = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "http://localhost:8080/server/positions"
+  //       );
+  //       setPositions(response.data);
+  //       positionsSelectOptions = response.data.map((position) => ({
+  //         value: position,
+  //         name: t(position),
+  //       }));
+  //     } catch (error) {
+  //       console.error(error);
+  //       <div className="card flex justify-content-center">
+  //         <Message text="There is an error!" />
+  //       </div>;
+  //     }
+  //   };
+
+  //   fetchPositions();
+  // }, []);
+  const [positionsSelectOptions, setPositionsSelectOptions] = useState([]);
+
+  useEffect(() => {
+    const fetchPositions = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/server/positions"
+        );
+        setPositions(response.data);
+        const options = response.data.map((position) => ({
+          value: position,
+          name: t(position),
+        }));
+        setPositionsSelectOptions(options);
+      } catch (error) {
+        console.error(error);
+        // Handle error
+      }
+    };
+
+    fetchPositions();
+  }, []);
+
+  /// GET call http://localhost:8080/server/positions with Axios
+  //when result is returned, console.log response data and pass it to setPositions()
+  //in case of error, console.error(error data) or show error message as modal dialog
 
   const onHobiChange = (e) => {
     let _hobi = [...hobi];
@@ -75,6 +135,7 @@ export function AddUserForm(props) {
       date,
       hobi,
       odabranoOdeljenje,
+      positions,
       bioValue,
       slikaValue,
     };
@@ -85,12 +146,13 @@ export function AddUserForm(props) {
     setDate(null);
     setHobi([]);
     setOdabranoOdeljenje(null);
+    setPositions(null);
     setBioValue("");
     setSlikaValue(null);
   };
 
   return (
-    <div className="UsersForm">
+    <div className="UsersForm flex justify-content-center">
       <Form
         onSubmit={handleSubmit}
         render={({ handleSubmit }) => (
@@ -200,33 +262,6 @@ export function AddUserForm(props) {
                 </div>
               </div>
 
-              <div className="Odeljenje field col">
-                <h4>{t("userform_department")}</h4>
-                <Dropdown
-                  value={odabranoOdeljenje}
-                  onChange={(event) => setOdabranoOdeljenje(event.value)}
-                  options={opcijeOdeljenja}
-                  optionLabel="name"
-                  placeholder={t("userform_choose_dropdown")}
-                  checkmark={true}
-                  highlightOnSelect={false}
-                  className="bg-primary-50"
-                />
-              </div>
-            </div>
-
-            <div className="formgrid grid">
-              <div className="Bio field col">
-                <h4>{t("userform_bio")}</h4>
-                <InputTextarea
-                  value={bioValue}
-                  onChange={(event) => setBioValue(event.target.value)}
-                  rows={7}
-                  cols={500}
-                  className="bg-primary-50 w-12"
-                />
-              </div>
-
               <div className="Slika field col">
                 <h4>{t("userform_photo")}</h4>
                 <div className="card">
@@ -241,7 +276,50 @@ export function AddUserForm(props) {
                   />
                 </div>
               </div>
-              <div className="SacuvajPodatke field col">
+            </div>
+
+            <div className="formgrid grid">
+              <div className="Odeljenje field col">
+                <h4>{t("userform_department")}</h4>
+                <Dropdown
+                  value={odabranoOdeljenje}
+                  onChange={(event) => setOdabranoOdeljenje(event.value)}
+                  options={opcijeOdeljenja}
+                  optionLabel="name"
+                  placeholder={t("userform_choose_dropdown")}
+                  checkmark={true}
+                  highlightOnSelect={false}
+                  className="bg-primary-50"
+                />
+              </div>
+              <div className="Position field col">
+                <h4>{t("userform_position")}</h4>
+                <Dropdown
+                  value={positions}
+                  onChange={(event) => setPositions(event.value)}
+                  options={positionsSelectOptions}
+                  optionLabel="name"
+                  placeholder={t("userform_choose_position")}
+                  checkmark={true}
+                  highlightOnSelect={false}
+                  className="bg-primary-50"
+                />
+              </div>
+              <div className="field col"></div>
+            </div>
+            <div className="formgrid grid">
+              <div className="Bio field col">
+                <h4>{t("userform_bio")}</h4>
+                <InputTextarea
+                  value={bioValue}
+                  onChange={(event) => setBioValue(event.target.value)}
+                  rows={7}
+                  cols={500}
+                  className="bg-primary-50 w-12"
+                />
+              </div>
+              <div className="field col"></div>
+              <div className="SacuvajPodatke field col align-content-center">
                 <h4>{t("userform_save")}</h4>
                 <Button
                   label={t("userform_save_button")}

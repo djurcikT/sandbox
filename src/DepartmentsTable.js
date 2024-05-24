@@ -63,7 +63,7 @@ export function DepartmentsTable({ departmentValues, onDelete }) {
   };
 
   return (
-    <div className="p-col-12">
+    <div className="p-col-12 mt-5">
       <div className="p-card p-p-4">
         <DataTable value={departmentValues} tableStyle={{ minWidth: "50rem" }}>
           <Column
@@ -82,7 +82,7 @@ export function DepartmentsTable({ departmentValues, onDelete }) {
                   label={t("user_open_details")}
                   icon="pi pi-eye"
                   onClick={() => {
-                    openDialog(
+                    openDialog( 
                       rowData.departmentType,
                       rowData.cityValue,
                       rowData.addressValue,

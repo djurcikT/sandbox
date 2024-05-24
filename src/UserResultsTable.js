@@ -26,6 +26,7 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedHobi, setSelectedHobi] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [selectedPosition, setSelectedPosition] = useState("");
   const [selectedPhoto, setSelectedPhoto] = useState("");
   const [selectedBio, setSelectedBio] = useState("");
 
@@ -36,6 +37,7 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
     date,
     hobby,
     department,
+    position,
     photo,
     bio
   ) => {
@@ -45,6 +47,7 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
     setSelectedDate(date);
     setSelectedHobi(hobby);
     setSelectedDepartment(department);
+    setSelectedPosition(position);
     setSelectedPhoto(photo);
     setSelectedBio(bio);
     setVisible(true);
@@ -81,7 +84,7 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
   };
 
   return (
-    <div className="p-col-12">
+    <div className="p-col-12 mt-5">
       <div className="p-card p-p-4">
         <DataTable
           value={vrednostiTabele}
@@ -108,6 +111,7 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
                       rowData.date,
                       rowData.hobi,
                       rowData.odabranoOdeljenje,
+                      rowData.positions,
                       rowData.slikaValue,
                       rowData.bioValue
                     );
@@ -119,9 +123,9 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
                   style={{ width: "50vw" }}
                   onHide={() => setVisible(false)}
                 >
-                  <div class="grid">
-                    <div class="col-6">
-                      <div class="p-3 border-round-sm">
+                  <div className="grid">
+                    <div className="col-6">
+                      <div className="p-3 border-round-sm">
                         <p className="m-0">
                           <b>{t("userform_name")}</b> {selectedName}
                         </p>
@@ -129,7 +133,7 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
                           <b>{t("userform_surname")}</b> {selectedSurname}
                         </p>
                         <p className="m-0">
-                          <b>{t("userform_gender")}</b> {selectedPol}
+                          <b>{t("userform_gender")}</b> {t(selectedPol)}
                         </p>
                         <p className="m-0">
                           <b>{t("userform_date")}</b>{" "}
@@ -146,13 +150,16 @@ export function UserResultsTable({ vrednostiTabele, onDelete }) {
                           )}
                         </p>
                         <p className="m-0">
-                          <b>{t("userform_department")}</b>{" "}
+                          <b>{t("userform_department")}</b>
                           {t(selectedDepartment)}
+                        </p>
+                        <p className="m-0">
+                          <b>{t("userform_position")}</b> {t(selectedPosition)}
                         </p>
                       </div>
                     </div>
-                    <div class="col-6">
-                      <div class=" border-round-sm">
+                    <div className="col-6">
+                      <div className=" border-round-sm">
                         <p className="m-0">
                           {selectedPhoto && (
                             <div className="card flex justify-content-center">
