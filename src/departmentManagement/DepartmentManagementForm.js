@@ -12,6 +12,7 @@ import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
+import { TextInputField } from "../common/InputFields";
 
 
 function DepartmentManagementForm(props) {
@@ -70,27 +71,21 @@ function DepartmentManagementForm(props) {
                   className="bg-primary-50 w-5"
                 />
               </div>
-              <div className="City card field col">
-                <h4>{t("userform_city")}</h4>
-                <FloatLabel>
-                  <InputText
-                    id="city"
-                    value={cityValue}
-                    onChange={(event) => setCityValue(event.target.value)}
-                    className="bg-primary-50"
-                  />
-                </FloatLabel>
+              <div>
+                <TextInputField 
+                  id="city"
+                  value={cityValue}
+                  onChange={(event) =>  setCityValue(event.target.value)}
+                  title={t("userform_city")}
+                />
               </div>
-              <div className="Address card field col">
-                <h4>{t("userform_address")}</h4>
-                <FloatLabel>
-                  <InputText
-                    id="address"
-                    value={addressValue}
-                    onChange={(event) => setAddressValue(event.target.value)}
-                    className="bg-primary-50"
-                  />
-                </FloatLabel>
+              <div>
+                <TextInputField 
+                  id="address"
+                  value={addressValue}
+                  onChange={(event) =>  setAddressValue(event.target.value)}
+                  title={t("userform_address")}
+                />
               </div>
             </div>
             <div className="formgrid grid">
