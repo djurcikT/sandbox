@@ -1,7 +1,7 @@
 import "/node_modules/primeflex/primeflex.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "primeicons/primeicons.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect,  useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { FloatLabel } from "primereact/floatlabel";
 import { RadioButton } from "primereact/radiobutton";
@@ -11,57 +11,24 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
 import "primeflex/primeflex.css";
-import "../src/Main.css";
-import { Field, Form } from "react-final-form";
+import "../Main.css";
+import { Form } from "react-final-form";
 import { FileUpload } from "primereact/fileupload";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
-import { Message } from "primereact/message";
+import { TextInputField } from "../common/InputFields";
 
-const lngs = {
-  en: { nativeName: "English" },
-  sr: { nativeName: "Serbian" },
-};
 
 export function AddUserForm(props) {
-  const { t, i18n } = useTranslation(); //i18next
-  const [imeValue, setImeValue] = useState(""); //za ime
-  const [prezimeValue, setPrezimeValue] = useState(""); //za prezime
-  const [pol, setPol] = useState(""); //za pol
-  const [date, setDate] = useState(null); //za datum rodjenja
-  const [hobi, setHobi] = useState([]); //za hobije
+  const { t } = useTranslation(); 
+  const [imeValue, setImeValue] = useState(""); 
+  const [prezimeValue, setPrezimeValue] = useState(""); 
+  const [pol, setPol] = useState("");
+  const [date, setDate] = useState(null);
+  const [hobi, setHobi] = useState([]); 
 
   const [positions, setPositions] = useState([]);
-  // let positionsSelectOptions = [];
 
-  // if (positions && positions.length > 0) {
-  //   positionsSelectOptions = positions.map((position) => ({
-  //     name: t(position),
-  //     value: position,
-  //   }));
-  // }
-
-  // useEffect(() => {
-  //   const fetchPositions = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "http://localhost:8080/server/positions"
-  //       );
-  //       setPositions(response.data);
-  //       positionsSelectOptions = response.data.map((position) => ({
-  //         value: position,
-  //         name: t(position),
-  //       }));
-  //     } catch (error) {
-  //       console.error(error);
-  //       <div className="card flex justify-content-center">
-  //         <Message text="There is an error!" />
-  //       </div>;
-  //     }
-  //   };
-
-  //   fetchPositions();
-  // }, []);
   const [positionsSelectOptions, setPositionsSelectOptions] = useState([]);
 
   useEffect(() => {
@@ -78,23 +45,18 @@ export function AddUserForm(props) {
         setPositionsSelectOptions(options);
       } catch (error) {
         console.error(error);
-        // Handle error
       }
     };
 
     fetchPositions();
   }, []);
 
-  /// GET call http://localhost:8080/server/positions with Axios
-  //when result is returned, console.log response data and pass it to setPositions()
-  //in case of error, console.error(error data) or show error message as modal dialog
-
   const onHobiChange = (e) => {
     let _hobi = [...hobi];
     if (e.checked) _hobi.push(e.value);
     else _hobi.splice(_hobi.indexOf(e.value), 1);
     setHobi(_hobi);
-  }; //za hobije
+  }; 
 
   const [odabranoOdeljenje, setOdabranoOdeljenje] = useState();
   const opcijeOdeljenja = [
@@ -105,13 +67,12 @@ export function AddUserForm(props) {
     { value: "dep_type5", name: t("dep_type5") },
     { value: "dep_type6", name: t("dep_type6") },
     { value: "dep_type7", name: t("dep_type7") },
-  ]; //za odeljenja
+  ]; 
 
   const [slikaValue, setSlikaValue] = useState(null);
-  const toast = useRef(null);
+
 
   const customBase64Uploader = async (event) => {
-    // convert file to base64 encoded
     const file = event.files[0];
     const reader = new FileReader();
     let blob = await fetch(file.objectURL).then((r) => r.blob()); //blob:url
@@ -123,7 +84,7 @@ export function AddUserForm(props) {
 
       setSlikaValue(base64data);
     };
-  }; //za sliku
+  };
 
   const [bioValue, setBioValue] = useState(""); //za biografiju
 
@@ -158,16 +119,13 @@ export function AddUserForm(props) {
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <div className="formgrid grid">
-              <div className="Ime card field col">
-                <h4>{t("userform_name")}</h4>
-                <FloatLabel>
-                  <InputText
-                    id="ime"
-                    value={imeValue}
-                    onChange={(event) => setImeValue(event.target.value)}
-                    className="bg-primary-50"
-                  />
-                </FloatLabel>
+              <div>
+                <TextInputField>
+                  id="ime"
+                  value={imeValue}
+                  onChange={(event) => setImeValue(event.target.value)}
+                  title="userform_name"
+                </TextInputField>
               </div>
 
               <div className="Prezime card field col">

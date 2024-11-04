@@ -4,20 +4,17 @@ import "primeicons/primeicons.css";
 import React, { useRef, useState } from "react";
 import { DataTable } from "primereact/datatable";
 import "primeflex/primeflex.css";
-import "../src/Main.css";
-import { useTranslation, Trans } from "react-i18next";
+import "../Main.css";
+import { useTranslation } from "react-i18next";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { Toast } from "primereact/toast";
 
-const lngs = {
-  en: { nativeName: "English" },
-  sr: { nativeName: "Serbian" },
-};
+
 
 export function DepartmentsTable({ departmentValues, onDelete }) {
-  const { t, i18n } = useTranslation();
+  const { t} = useTranslation();
   const toast = useRef(null);
   const [confirmationVisible, setConfirmationVisible] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState("");

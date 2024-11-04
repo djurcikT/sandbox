@@ -1,18 +1,14 @@
 import "/node_modules/primeflex/primeflex.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "primeicons/primeicons.css";
-import React, { useState } from "react";
+import React from "react";
 import "primeflex/primeflex.css";
-import "../src/Main.css";
-import { useTranslation, Trans } from "react-i18next";
+import "../Main.css";
+import { Trans } from "react-i18next";
 
-const lngs = {
-    en: { nativeName: "English" },
-    sr: { nativeName: "Serbian" },
-  };
 
 export function Footer() {
-    const { t, i18n } = useTranslation();
+
   return (
     <div className="FooterContainer pt-3">
       <div class="grid">

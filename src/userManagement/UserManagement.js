@@ -3,18 +3,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import "primeicons/primeicons.css";
 import React, { useState } from "react";
 import "primeflex/primeflex.css";
-import "../src/Main.css";
+import "../Main.css";
 import { AddUserForm } from "./AddUserForm.js";
 import { UserResultsTable } from "./UserResultsTable.js";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
-const lngs = {
-  en: { nativeName: "English" },
-  sr: { nativeName: "Serbian" },
-};
 
 function UserManagement() { 
-  const { t, i18n } = useTranslation();
+  const { t} = useTranslation();
   const [vrednostiTabele, setVrednostiTabele] = useState([]);
 
   const punoletan = (date) => {
@@ -62,9 +58,7 @@ function UserManagement() {
             pol: noviKorisnik.pol,
             date: noviKorisnik?.date?.toString(),
             hobi: noviKorisnik.hobi,
-            // odabranoOdeljenje: noviKorisnik && noviKorisnik.odabranoOdeljenje && noviKorisnik.odabranoOdeljenje.name,
             odabranoOdeljenje: noviKorisnik?.odabranoOdeljenje?.name,
-            // odabranoOdeljenje: noviKorisnik.odabranoOdeljenje.name,
             bioValue: noviKorisnik.bioValue,
             slikaValue: noviKorisnik.slikaValue,
             rowClass: !noviKorisnik.date

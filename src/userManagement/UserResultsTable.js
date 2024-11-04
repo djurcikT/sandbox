@@ -5,20 +5,16 @@ import React, { useRef, useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import "primeflex/primeflex.css";
-import "../src/Main.css";
+import "../Main.css";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { Toast } from "primereact/toast";
 import { Image } from "primereact/image";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation  } from "react-i18next";
 
-const lngs = {
-  en: { nativeName: "English" },
-  sr: { nativeName: "Serbian" },
-};
 
 export function UserResultsTable({ vrednostiTabele, onDelete }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
   const [selectedName, setSelectedName] = useState("");
   const [selectedSurname, setSelectedSurname] = useState("");

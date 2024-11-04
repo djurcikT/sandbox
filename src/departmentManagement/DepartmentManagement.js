@@ -3,18 +3,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import "primeicons/primeicons.css";
 import React, { useState } from "react";
 import "primeflex/primeflex.css";
-import "../src/Main.css";
-import { useTranslation, Trans } from "react-i18next";
+import "../Main.css";
+import { useTranslation } from "react-i18next";
 import DepartmentManagementForm from "./DepartmentManagementForm";
 import { DepartmentsTable } from "./DepartmentsTable";
 
-const lngs = {
-  en: { nativeName: "English" },
-  sr: { nativeName: "Serbian" },
-};
 
 function DepartmentManagement() {
-  const { t, i18n } = useTranslation();
+  const { t} = useTranslation();
   const [departmentValues, setDepartmentValues] = useState([]);
 
   const onSubmit = (newDepartment) => {

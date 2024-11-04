@@ -3,8 +3,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import "primeicons/primeicons.css";
 import React, { useState } from "react";
 import "primeflex/primeflex.css";
-import "../src/Main.css";
-import { useTranslation, Trans } from "react-i18next";
+import "../Main.css";
+import { useTranslation} from "react-i18next";
 import { Form } from "react-final-form";
 import { Dropdown } from "primereact/dropdown";
 import { FloatLabel } from "primereact/floatlabel";
@@ -13,13 +13,9 @@ import { InputNumber } from "primereact/inputnumber";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 
-const lngs = {
-  en: { nativeName: "English" },
-  sr: { nativeName: "Serbian" },
-};
 
 function DepartmentManagementForm(props) {
-  const { t, i18n } = useTranslation();
+  const { t} = useTranslation();
 
   const [departmentType, setDepartmentType] = useState(null);
   const departmentTypeOptions = [
@@ -31,7 +27,7 @@ function DepartmentManagementForm(props) {
     { value: "dep_type6", name: t("dep_type6") },
     { value: "dep_type7", name: t("dep_type7") },
   ];
-  //name = vrednost izabrane opcije u formi; label  = kako ce biti vidljivo na UI
+
 
   const [cityValue, setCityValue] = useState("");
   const [addressValue, setAddressValue] = useState("");
