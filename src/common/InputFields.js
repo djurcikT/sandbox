@@ -1,5 +1,6 @@
 import { InputText } from 'primereact/inputtext';  
 import { useTranslation } from 'react-i18next';
+import { FloatLabel } from "primereact/floatlabel";
 
 
 //AddUserForm - text inputs

@@ -120,24 +120,21 @@ export function AddUserForm(props) {
           <form onSubmit={handleSubmit}>
             <div className="formgrid grid">
               <div>
-                <TextInputField>
+                <TextInputField 
                   id="ime"
                   value={imeValue}
                   onChange={(event) => setImeValue(event.target.value)}
-                  title="userform_name"
-                </TextInputField>
+                  title={t("userform_name")}
+                />
               </div>
 
-              <div className="Prezime card field col">
-                <h4>{t("userform_surname")}</h4>
-                <FloatLabel>
-                  <InputText
-                    id="Prezime"
-                    value={prezimeValue}
-                    onChange={(event) => setPrezimeValue(event.target.value)}
-                    className="bg-primary-50"
-                  />
-                </FloatLabel>
+              <div>
+                <TextInputField
+                  id="prezime"
+                  value={prezimeValue}
+                  onChange={(event) => setPrezimeValue(event.target.value)}
+                  title={t("userform_surname")}
+                />
               </div>
 
               <div className="Pol field col">
