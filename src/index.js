@@ -9,7 +9,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./i18n";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+
 
 const router = createBrowserRouter([
   {

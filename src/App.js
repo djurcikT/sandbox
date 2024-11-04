@@ -24,18 +24,9 @@ function App() {
     const updatedUSersList = [...usersList];
     updatedUSersList.push(values);
     setUsersList(updatedUSersList);
-    //console.log("Form values:", usersList);
     form.reset();
   };
-  //Dodati novi objekat iz values u usersList i pronaci nacin kako da se isprazni forma
 
-  const DateField = ({ input }) => (
-    <DatePicker
-      selected={input.value}
-      onChange={input.onChange}
-      dateFormat="dd/MM/yyyy"
-    />
-  );
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -53,13 +44,6 @@ function App() {
         animal = setAnimal(parrot);
     }
   }
-
-  //const RefreshBtn = document.getElementById("btnRefresh");
-  //RefreshBtn.addEventListener("click", getRandomAnimalImage);
-  /*
-  useEffect(() => {
-    getRandomAnimalImage();
-  }, []);*/
 
   return (
     <PrimeReactProvider>

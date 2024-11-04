@@ -1,19 +1,16 @@
 import "/node_modules/primeflex/primeflex.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "primeicons/primeicons.css";
-import React, { useState } from "react";
+import React from "react";
 import "primeflex/primeflex.css";
 import "../src/Main.css";
 import { Card } from "primereact/card";
 import { useTranslation, Trans } from "react-i18next";
 
-const lngs = {
-  en: { nativeName: "English" },
-  sr: { nativeName: "Serbian" },
-};
+
 
 export function Home(props) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className="HomeContainer">
       <h2 className="flex justify-content-center">{t("title_h")}</h2>

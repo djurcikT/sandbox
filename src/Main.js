@@ -1,19 +1,19 @@
 import "/node_modules/primeflex/primeflex.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "primeicons/primeicons.css";
-import React, { useState } from "react";
+import React from "react";
 import "primeflex/primeflex.css";
 import "../src/Main.css";
-import { Header } from "./Header";
+import { Header } from "./common/Header";
 import { Home } from "./Home";
-import UserManagement from "./UserManagement";
+import UserManagement from "./userManagement/UserManagement";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { TabMenu } from "primereact/tabmenu";
 import { Link } from "react-router-dom";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { Button } from "primereact/button";
-import DepartmentManagement from "./DepartmentManagement";
-import { Footer } from "./Footer";
+import DepartmentManagement from "./departmentManagement/DepartmentManagement";
+import { Footer } from "./common/Footer";
 
 const lngs = {
   en: { nativeName: "English" },

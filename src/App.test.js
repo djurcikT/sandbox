@@ -1,4 +1,3 @@
-import { render, screen } from "@testing-library/react";
 
 test("Numbers and strings arithmetics test", () => {
   const br1 = 10;
