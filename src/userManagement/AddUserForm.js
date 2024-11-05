@@ -61,6 +61,7 @@ export function AddUserForm(props) {
   ]; 
 
   const [slikaValue, setSlikaValue] = useState(null);
+  const [uploadKey, setUploadKey] = useState(0);
 
 
   const customBase64Uploader = async (event) => {
@@ -101,6 +102,7 @@ export function AddUserForm(props) {
     setPositions(null);
     setBioValue("");
     setSlikaValue(null);
+    setUploadKey(prevKey => prevKey + 1);
   };
 
   return (
