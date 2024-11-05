@@ -9,6 +9,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { InputNumber } from 'primereact/inputnumber';
 import { Button } from 'primereact/button';
+import React, { useRef, useEffect } from "react";
 
 
 export function TextInputField({ id, value, title, onChange }) {
@@ -140,13 +141,22 @@ export function CheckboxInput({title, name, valueOne, valueTwo, valueThree, idOn
     )
 }
 
-export function PhotoUpload({title, name, value, uploadHandler}){
+export function PhotoUpload({title, name, value, uploadHandler, resetKey}){
     const { t } = useTranslation();
+    const fileUploadRef = useRef(null);
+
+    useEffect(() => {
+        if (fileUploadRef.current) {
+          fileUploadRef.current.clear();
+        }
+    }, [resetKey]);
+
     return(
         <div className="field col">
             <h4>{t(title)}</h4>
             <div className="card">
                 <FileUpload
+                ref={fileUploadRef}
                 mode="basic"
                 name={name}
                 url="./upload"

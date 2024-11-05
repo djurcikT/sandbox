@@ -7,6 +7,8 @@ import "../Main.css";
 import { useTranslation} from "react-i18next";
 import { Form } from "react-final-form";
 import { DropdownInput, NumberInputField, SaveButton, TextareaInput, TextInputField } from "../common/InputFields";
+import { Button } from "primereact/button";
+import { faker } from '@faker-js/faker';
 
 
 function DepartmentManagementForm(props) {
@@ -28,6 +30,14 @@ function DepartmentManagementForm(props) {
   const [addressValue, setAddressValue] = useState("");
   const [maxNumValue, setMaxNumValue] = useState();
   const [descriptionValue, setDescriptionValue] = useState("");
+
+  const autoFill = () => {
+    setDepartmentType(faker.helpers.shuffle(departmentTypeOptions)[0].value);
+    setCityValue(faker.location.city());
+    setAddressValue(faker.location.streetAddress());
+    setMaxNumValue(faker.number.int({ max: 100 }));
+    setDescriptionValue(faker.lorem.paragraph());
+  };
 
   const handleSubmit = (e) => {
     const departmentValues = {
@@ -51,6 +61,18 @@ function DepartmentManagementForm(props) {
         onSubmit={handleSubmit}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
+
+            <div className="flex justify-content-center mt-4">
+              <Button
+                type="button" 
+                onClick={autoFill} 
+                className="p-button p-d-flex p-ai-center p-jc-center"
+              >
+                <i className="pi pi-pencil mr-2"></i> 
+                Auto-fill
+              </Button>
+            </div>
+
             <div className="formgrid grid">
 
               <DropdownInput

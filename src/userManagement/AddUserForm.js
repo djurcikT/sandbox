@@ -8,6 +8,8 @@ import { Form } from "react-final-form";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { CheckboxInput, DateInput, DropdownInput, PhotoUpload, RadioButtons, SaveButton, TextareaInput, TextInputField } from "../common/InputFields";
+import { faker } from '@faker-js/faker';
+import { Button } from "primereact/button";
 
 
 export function AddUserForm(props) {
@@ -61,13 +63,13 @@ export function AddUserForm(props) {
   ]; 
 
   const [slikaValue, setSlikaValue] = useState(null);
-  const [uploadKey, setUploadKey] = useState(0);
+  const [resetKey, setResetKey] = useState(0);
 
 
   const customBase64Uploader = async (event) => {
     const file = event.files[0];
     const reader = new FileReader();
-    let blob = await fetch(file.objectURL).then((r) => r.blob()); //blob:url
+    let blob = await fetch(file.objectURL).then((r) => r.blob()); 
 
     reader.readAsDataURL(blob);
 
@@ -78,7 +80,26 @@ export function AddUserForm(props) {
     };
   };
 
-  const [bioValue, setBioValue] = useState(""); //za biografiju
+  const [bioValue, setBioValue] = useState(""); 
+
+  const autoFill = () => {
+    setImeValue(faker.person.firstName());
+    setPrezimeValue(faker.person.lastName());
+    setDate(faker.date.birthdate());
+    const randomGender = faker.helpers.shuffle(["zensko", "musko"])[0]; 
+    setPol(randomGender);
+    setHobi(faker.helpers.shuffle(["Sport", "Muzika", "Knjige"]).slice(0, 2)); 
+    setOdabranoOdeljenje(faker.helpers.shuffle(opcijeOdeljenja)[0].value);
+    if (positionsSelectOptions.length > 0) {
+      setPositions(faker.helpers.shuffle(positionsSelectOptions)[0].value);
+    } else {
+      setPositions(null);
+    }
+    setSlikaValue(faker.image.urlPicsumPhotos()); 
+    setBioValue(faker.lorem.paragraph());
+  };
+
+
 
   const handleSubmit = (e) => {
     const noveVrednostiTabele = {
@@ -102,7 +123,7 @@ export function AddUserForm(props) {
     setPositions(null);
     setBioValue("");
     setSlikaValue(null);
-    setUploadKey(prevKey => prevKey + 1);
+    setResetKey(prevKey => prevKey + 1);
   };
 
   return (
@@ -111,6 +132,18 @@ export function AddUserForm(props) {
         onSubmit={handleSubmit}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
+
+            <div className="flex justify-content-center mt-4">
+              <Button 
+                type="button" 
+                onClick={autoFill} 
+                className="p-button p-d-flex p-ai-center p-jc-center"
+              >
+                <i className="pi pi-pencil mr-2"></i> 
+                Auto-fill
+              </Button>
+            </div>  
+
             <div className="formgrid grid">
              
               <TextInputField 
@@ -168,6 +201,7 @@ export function AddUserForm(props) {
                 name = {"slika"}
                 value = {slikaValue}
                 uploadHandler = {customBase64Uploader}
+                resetKey={resetKey}
               />
 
             </div>
