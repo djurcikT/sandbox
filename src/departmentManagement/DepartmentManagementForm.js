@@ -6,13 +6,8 @@ import "primeflex/primeflex.css";
 import "../Main.css";
 import { useTranslation} from "react-i18next";
 import { Form } from "react-final-form";
-import { Dropdown } from "primereact/dropdown";
-import { FloatLabel } from "primereact/floatlabel";
-import { InputText } from "primereact/inputtext";
-import { InputNumber } from "primereact/inputnumber";
-import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
-import { TextInputField } from "../common/InputFields";
+import { DropdownInput, NumberInputField, TextareaInput, TextInputField } from "../common/InputFields";
 
 
 function DepartmentManagementForm(props) {
@@ -58,58 +53,49 @@ function DepartmentManagementForm(props) {
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <div className="formgrid grid">
-              <div className="Type field col">
-                <h4>{t("userform_department")}</h4>
-                <Dropdown
-                  value={departmentType}
-                  onChange={(event) => setDepartmentType(event.value)}
-                  options={departmentTypeOptions}
-                  optionLabel="name"
-                  placeholder={t("userform_choose_dropdown")}
-                  checkmark={true}
-                  highlightOnSelect={false}
-                  className="bg-primary-50 w-5"
-                />
-              </div>
-              <div>
-                <TextInputField 
-                  id="city"
-                  value={cityValue}
-                  onChange={(event) =>  setCityValue(event.target.value)}
-                  title={t("userform_city")}
-                />
-              </div>
-              <div>
-                <TextInputField 
-                  id="address"
-                  value={addressValue}
-                  onChange={(event) =>  setAddressValue(event.target.value)}
-                  title={t("userform_address")}
-                />
-              </div>
+
+              <DropdownInput
+                title = {"userform_department"}
+                value = {departmentType}
+                onChange={(event) => setDepartmentType(event.value)}
+                options = {departmentTypeOptions}
+                optionLabel = {"name"}
+                placeholder = {"userform_choose_dropdown"}
+              />
+          
+              <TextInputField 
+                id="city"
+                value={cityValue}
+                onChange={(event) =>  setCityValue(event.target.value)}
+                title={"userform_city"}
+              />
+            
+              <TextInputField 
+                id="address"
+                value={addressValue}
+                onChange={(event) =>  setAddressValue(event.target.value)}
+                title={"userform_address"}
+              />
+              
             </div>
             <div className="formgrid grid">
-              <div className="MaxNum field col">
-                <div className="flex-auto">
-                  <h4>{t("userform_maxNum")}</h4>
-                  <InputNumber
-                    inputId="maxNum"
-                    value={maxNumValue}
-                    onValueChange={(e) => setMaxNumValue(e.value)}
-                  />
-                </div>
-              </div>
-              <div className="Description card field col">
-                <h4>{t("userform_description")}</h4>
-                <InputTextarea
-                  value={descriptionValue}
-                  onChange={(event) => setDescriptionValue(event.target.value)}
-                  rows={5}
-                  cols={500}
-                  className="bg-primary-50 w-10"
-                />
-              </div>
-              <div className="Address card field col">
+
+              <NumberInputField
+                id="maxNum"
+                value={maxNumValue}
+                onValueChange={(e) => setMaxNumValue(e.value)}
+                title={"userform_maxNum"}
+              />
+
+              <TextareaInput
+                title = {"userform_description"}
+                value = {descriptionValue}
+                onChange = {(event) => setDescriptionValue(event.target.value)}
+                rows = {5}
+                cols = {500}
+              />
+
+              <div className="card field col">
                 <h4>{t("userdepart_save")}</h4>
                 <Button
                   label={t("userform_save_button")}
