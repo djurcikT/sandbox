@@ -8,6 +8,7 @@ import { FileUpload } from 'primereact/fileupload';
 import { Dropdown } from 'primereact/dropdown';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { InputNumber } from 'primereact/inputnumber';
+import { Button } from 'primereact/button';
 
 
 export function TextInputField({ id, value, title, onChange }) {
@@ -44,7 +45,7 @@ export function NumberInputField({title, id, value, onValueChange}){
     )
 }
 
-//Radio buttns with two choices
+//Radio buttons with two choices
 export function RadioButtons({title, optionOne, optionTwo, onChange, labelOne, labelTwo, choice }){
     const { t } = useTranslation();
     return(
@@ -191,5 +192,20 @@ export function TextareaInput({title, value, onChange, cols, rows}){
                 className="bg-primary-50 w-12"
             />
         </div>
+    )
+}
+
+export function SaveButton(){
+    const { t } = useTranslation();
+    return(
+        <div className="card field col">
+            <h4>{t("userdepart_save")}</h4>
+            <Button
+            label={t("userform_save_button")}
+            icon="pi pi-check"
+            type="submit"
+            className="p-button"
+            />
+        </div>   
     )
 }

@@ -6,8 +6,7 @@ import "primeflex/primeflex.css";
 import "../Main.css";
 import { useTranslation} from "react-i18next";
 import { Form } from "react-final-form";
-import { Button } from "primereact/button";
-import { DropdownInput, NumberInputField, TextareaInput, TextInputField } from "../common/InputFields";
+import { DropdownInput, NumberInputField, SaveButton, TextareaInput, TextInputField } from "../common/InputFields";
 
 
 function DepartmentManagementForm(props) {
@@ -95,15 +94,7 @@ function DepartmentManagementForm(props) {
                 cols = {500}
               />
 
-              <div className="card field col">
-                <h4>{t("userdepart_save")}</h4>
-                <Button
-                  label={t("userform_save_button")}
-                  icon="pi pi-check"
-                  type="submit"
-                  className="p-button"
-                />
-              </div>
+              <SaveButton/>
             </div>
           </form>
         )}

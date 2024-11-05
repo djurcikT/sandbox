@@ -14,7 +14,7 @@ import { Toast } from "primereact/toast";
 
 
 export function DepartmentsTable({ departmentValues, onDelete }) {
-  const { t} = useTranslation();
+  const { t } = useTranslation();
   const toast = useRef(null);
   const [confirmationVisible, setConfirmationVisible] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState("");
@@ -57,7 +57,7 @@ export function DepartmentsTable({ departmentValues, onDelete }) {
       detail: "Deleting cancelled",
       life: 3000,
     });
-  };
+  }; 
 
   return (
     <div className="p-col-12 mt-5">

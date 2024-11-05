@@ -2,13 +2,12 @@ import "/node_modules/primeflex/primeflex.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "primeicons/primeicons.css";
 import React, { useEffect,  useState } from "react";
-import { Button } from "primereact/button";
 import "primeflex/primeflex.css";
 import "../Main.css";
 import { Form } from "react-final-form";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import { CheckboxInput, DateInput, DropdownInput, PhotoUpload, RadioButtons, TextareaInput, TextInputField } from "../common/InputFields";
+import { CheckboxInput, DateInput, DropdownInput, PhotoUpload, RadioButtons, SaveButton, TextareaInput, TextInputField } from "../common/InputFields";
 
 
 export function AddUserForm(props) {
@@ -207,15 +206,7 @@ export function AddUserForm(props) {
 
               <div className="field col"></div>
 
-              <div className="field col align-content-center">
-                <h4>{t("userform_save")}</h4>
-                <Button
-                  label={t("userform_save_button")}
-                  icon="pi pi-check"
-                  type="submit"
-                  className="p-button"
-                />
-              </div>
+              <SaveButton/>
             </div>
           </form>
         )}
